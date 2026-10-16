@@ -106,11 +106,13 @@ function applyLang(page) {
   $('.foot a').textContent = t('footHome');
   $('.foot a').href = state.lang === 'ur' ? '../?lang=ur' : '../';
   $('.skip').textContent = t('skip');
-  const current = page === 'help' ? 'help' : 'home';
+  // Home is the public story page; inside the account area no tab is current except Help.
+  const current = page === 'help' ? 'help' : null;
   for (const a of $$('[data-nav]')) {
     const k = a.dataset.nav;
     a.querySelector('span').textContent = t(`nav.${k}`);
     if (k === 'check' || k === 'news') a.href = `../?tab=${k}${state.lang === 'ur' ? '&lang=ur' : ''}`;
+    if (k === 'home') a.href = state.lang === 'ur' ? '../?lang=ur' : '../';
     if (k === current) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
   }
   const signed = CONFIG.backendOn && auth.signedIn();
