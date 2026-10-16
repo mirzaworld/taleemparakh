@@ -112,6 +112,27 @@ export function nameSimilarity(a, b) {
   return inter / Math.max(ta.size, tb.size);
 }
 
+// English texts and Urdu drafts for the Laiba-gap payment flags and form labels. Lane B copies them into i18n
+// (keys `flag.<id>` and `pay.<key>`); the Urdu is a draft until a native-speaking counsellor has reviewed it.
+export const PAYMENT_GAP_TEXT = {
+  en: {
+    'pay.paidBefore': 'I have paid this person before',
+    'pay.newFeeAfter': 'A new fee appeared after I paid',
+    'pay.receiptOther': 'I have a receipt that did not come from the university\'s own portal or email',
+    'flag.paid_before': 'You have already paid this person. Scams often grow in steps: a first payment, then a new fee, then a "last" fee, each one to protect the money already paid. Stop, and do not pay again until you have checked with the university yourself.',
+    'flag.new_fee_after_paying': 'A new fee after you paid is a common sign of a scam. The first payment is used to ask for more. Stop, and check with the university through the contact on its own website.',
+    'flag.receipt_not_from_university': 'A receipt that did not come from the university can be forged. Only the university can tell you it received your money. Confirm the payment in the university\'s official portal or by writing to its own email address.',
+  },
+  ur: {
+    'pay.paidBefore': 'میں اس شخص کو پہلے بھی رقم دے چکا یا چکی ہوں',
+    'pay.newFeeAfter': 'رقم دینے کے بعد ایک نئی فیس مانگی گئی',
+    'pay.receiptOther': 'میرے پاس ایسی رسید ہے جو یونیورسٹی کے اپنے پورٹل یا ای میل سے نہیں آئی',
+    'flag.paid_before': 'آپ اس شخص کو پہلے ہی رقم دے چکے ہیں۔ فراڈ اکثر قدم بہ قدم بڑھتا ہے: پہلی ادائیگی، پھر نئی فیس، پھر "آخری" فیس، اور ہر بار کہا جاتا ہے کہ پچھلی رقم بچانے کے لیے دیں۔ رکیں، اور یونیورسٹی سے خود پوچھے بغیر دوبارہ ادائیگی نہ کریں۔',
+    'flag.new_fee_after_paying': 'رقم دینے کے بعد نئی فیس کا مطالبہ فراڈ کی عام نشانی ہے۔ پہلی ادائیگی کو مزید رقم مانگنے کے لیے استعمال کیا جاتا ہے۔ رکیں، اور یونیورسٹی کی اپنی ویب سائٹ پر دیے گئے رابطے سے خود تصدیق کریں۔',
+    'flag.receipt_not_from_university': 'جو رسید یونیورسٹی کی طرف سے نہ آئی ہو وہ جعلی ہو سکتی ہے۔ صرف یونیورسٹی بتا سکتی ہے کہ اسے آپ کی رقم ملی ہے یا نہیں۔ ادائیگی کی تصدیق یونیورسٹی کے سرکاری پورٹل پر یا اس کے اپنے ای میل پتے پر لکھ کر کریں۔',
+  },
+};
+
 /**
  * @param {object} p
  * @param {string} p.institutionName   institution the student believes they are paying
@@ -124,6 +145,9 @@ export function nameSimilarity(a, b) {
  * @param {boolean} p.payingAgent      student is paying an agent rather than the institution
  * @param {boolean} p.pressure         told to pay urgently
  * @param {boolean} p.largeAmount      amount is large relative to family means / property sale
+ * @param {boolean} [p.paidBefore]            "Have you paid this person before?" (G5)
+ * @param {boolean} [p.newFeeAfterPaying]     "Did a new fee appear after you paid?" (G5)
+ * @param {boolean} [p.receiptNotFromUniversity] "Do you have a receipt that did not come from the university's own portal or email?" (G3)
  * @param {string} p.method            'bank' | 'card_portal' | 'mobile_wallet' | 'cash' | 'crypto' | 'other'
  */
 export function checkPayment(p) {
@@ -205,8 +229,14 @@ export function checkPayment(p) {
     }
   }
 
+  // G5: each extra payment is a decision point. Either "yes" is danger and always asks the student to stop and talk
+  // to someone, whatever the amount. G3: a receipt from anyone but the university proves nothing.
+  if (p.paidBefore === true) flags.push({ id: 'paid_before', severity: 'high' });
+  if (p.newFeeAfterPaying === true) flags.push({ id: 'new_fee_after_paying', severity: 'high' });
+  if (p.receiptNotFromUniversity === true) flags.push({ id: 'receipt_not_from_university', severity: 'medium' });
+
   const highCount = flags.filter((f) => f.severity === 'high').length;
-  const escalate = p.largeAmount && (highCount > 0 || p.pressure || p.payingAgent);
+  const escalate = (p.largeAmount && (highCount > 0 || p.pressure || p.payingAgent)) || p.paidBefore === true || p.newFeeAfterPaying === true;
   if (escalate) flags.push({ id: 'escalate_human', severity: 'high' });
 
   const level = highCount ? 'danger' : flags.length ? 'caution' : 'no_obvious_issue';

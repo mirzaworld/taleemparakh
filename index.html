@@ -24,6 +24,7 @@
   <link rel="icon" href="icons/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" sizes="180x180">
+  <script src="js/ui/boot.js"></script>
   <link rel="stylesheet" href="styles.css">
   <script type="module" src="js/app.js"></script>
 </head>
@@ -56,6 +57,289 @@
   <main id="main">
     <p class="ur-draft notice" data-i18n="lang.urDraft" lang="ur" hidden>This Urdu text is a translation that is still under review by a native-speaking counsellor. If anything is unclear, please use the English text.</p>
     <p id="data-stale" class="warn" role="status" hidden></p>
+
+    <section id="panel-story" class="panel story" data-panel="story" aria-labelledby="story-h">
+      <div class="hero" id="story-top">
+        <div class="hero-copy">
+          <a class="btn primary skip-story" href="?tab=check" data-goto="check"><svg class="i" data-icon="check" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 5 5"/><path d="M8 10.5h5"/></svg><span data-i18n="story.skip">Skip the story, check now</span></a>
+          <p class="eyebrow" data-i18n="story.eyebrow">Free and private, for students applying abroad</p>
+          <h1 id="story-h" tabindex="-1" data-i18n="story.title">How study abroad scams trap students, step by step</h1>
+          <p class="lead" data-i18n="story.lead">Scammers use the same six steps again and again. Scroll to see each step and the free check that stops it.</p>
+          <p class="quick-h" data-i18n="story.quickH">Or check something now:</p>
+          <ul class="quick">
+            <li><a href="?tab=institution" data-tool="institution"><svg class="i" data-icon="building" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 9.5 12 5l8.5 4.5"/><path d="M5.5 10v7M9.8 10v7M14.2 10v7M18.5 10v7"/><path d="M3.5 19.5h17"/></svg><span data-i18n="nav.institution">University</span></a></li>
+            <li><a href="?tab=contact" data-tool="contact"><svg class="i" data-icon="mail" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3.5" y="6" width="17" height="12" rx="1.5"/><path d="m4 7 8 6 8-6"/></svg><span data-i18n="nav.contact">Email or link</span></a></li>
+            <li><a href="?tab=message" data-tool="message"><svg class="i" data-icon="chat" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 5.5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-8l-4 3v-3H5a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1z"/><path d="M8 10h8M8 13h5"/></svg><span data-i18n="nav.message">Agent message</span></a></li>
+            <li><a href="?tab=pay" data-tool="pay"><svg class="i" data-icon="money" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3.5" y="6.5" width="17" height="11" rx="1.5"/><circle cx="12" cy="12" r="2.5"/><path d="M6.5 9.5v5M17.5 9.5v5"/></svg><span data-i18n="nav.pay">Before you pay</span></a></li>
+          </ul>
+        </div>
+        <div class="hero-art" role="img" aria-label="Illustration: a letter, a phone, a stamp and a bank card floating around a green shield." data-i18n-aria-label="story.heroArt">
+          <div class="scene"><div class="tilt">
+            <span class="ground"></span>
+            <div class="orb o-lens"><svg viewBox="0 0 60 60" width="60" height="60" aria-hidden="true" focusable="false" class="ill"><circle class="k-tint" cx="30" cy="30" r="29"/><circle class="s s-brand" cx="27" cy="27" r="12"/><path class="s s-brand" d="m36 36 10 10"/></svg></div>
+            <div class="emblem">
+              <span class="e-edge"></span><span class="e-edge"></span><span class="e-edge"></span><span class="e-edge"></span><span class="e-edge"></span><span class="e-edge"></span><span class="e-edge"></span><span class="e-edge"></span><span class="e-edge"></span><span class="e-edge"></span>
+              <span class="e-face"></span>
+              <span class="e-rim"><svg viewBox="0 0 160 184" width="160" height="184" aria-hidden="true" focusable="false"><path d="M80 12 L148 32 V92 C148 134 120 160 80 172 C40 160 12 134 12 92 V32 Z" fill="none" stroke="#c6a884" stroke-width="3"/></svg></span>
+              <span class="e-mono"><svg viewBox="0 0 540 400" width="92" height="70" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M0 0H266V225C266 237 274 244 287 252L305 262C307 268 306 272 302 276C293 283 279 290 265 296L129 364V78C129 65 137 54 152 48C127 39 100 35 65 36C35 37 15 42 0 48ZM291 0H383C475 0 539 63 539 143C539 203 500 255 422 275C418 264 424 253 411 242C385 221 350 218 315 204C300 198 291 192 291 180ZM396 65A59 59 0 1 0 465 148C445 165 408 165 387 140C370 118 377 88 396 65ZM444.9 80.9L452.2 92.9L465.9 90.2L456.8 100.8L463.5 113L450.6 107.6L441.1 117.8L442.2 103.9L429.6 98L443.2 94.8ZM307 264C330 273 360 286 373 295C381 300 385 306 385 316V400H210L275 351C305 328 327 313 327 295C327 283 319 274 307 264Z"/></svg></span>
+            </div>
+            <div class="orb o-letter"><svg viewBox="0 0 90 116" width="90" height="116" aria-hidden="true" focusable="false" class="ill"><rect class="k-paper" x="1" y="1" width="88" height="114" rx="5"/><rect class="s-frame" x="1" y="1" width="88" height="114" rx="5"/><rect class="k-brand" x="10" y="10" width="16" height="16" rx="3"/><path class="s thin" d="M32 14h44M32 22h28M10 40h70M10 50h70M10 60h58M10 70h70M10 80h40"/><circle class="s s-olive thin" cx="66" cy="96" r="11"/></svg></div>
+            <div class="orb o-phone"><svg viewBox="0 0 60 108" width="60" height="108" aria-hidden="true" focusable="false" class="ill"><rect class="k-deep" x="1" y="1" width="58" height="106" rx="11"/><rect class="k-paper" x="6" y="10" width="48" height="86" rx="5"/><rect class="k-soft" x="10" y="16" width="34" height="16" rx="5"/><rect class="k-tint" x="16" y="38" width="34" height="22" rx="5"/><rect class="k-soft" x="10" y="66" width="28" height="12" rx="5"/></svg></div>
+            <div class="orb o-stamp"><svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true" focusable="false" class="ill"><circle class="k-tint" cx="32" cy="32" r="31"/><circle class="s s-olive" cx="32" cy="32" r="25"/><circle class="s s-olive thin dash" cx="32" cy="32" r="17"/><path class="k-olive" d="M32 22l3 7 7 .3-5.5 4.4 2 7-6.5-4-6.5 4 2-7-5.5-4.4 7-.3z"/></svg></div>
+            <div class="orb o-card"><svg viewBox="0 0 96 62" width="96" height="62" aria-hidden="true" focusable="false" class="ill"><rect class="k-brand" x="1" y="1" width="94" height="60" rx="8"/><rect class="k-deep" x="1" y="12" width="94" height="10"/><rect class="k-brass" x="10" y="30" width="16" height="12" rx="3"/><path class="s s-paper thin" d="M34 48h14M54 48h14M74 48h12"/></svg></div>
+          </div></div>
+        </div>
+        <a class="scroll-cue" href="#stage-1"><span data-i18n="story.scroll">Scroll to start the story</span><svg class="i" data-icon="down" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9.5 6 6 6-6"/></svg></a>
+      </div>
+
+      <div class="stages">
+        <nav class="rail" aria-label="Story steps" data-i18n-aria-label="story.railLabel">
+          <div class="rail-track" aria-hidden="true"><span class="rail-fill"></span></div>
+          <ol>
+            <li><a href="#stage-1"><span class="vh" data-i18n="story.s1.title">A too-good offer</span></a></li>
+            <li><a href="#stage-2"><span class="vh" data-i18n="story.s2.title">A fake admission or scholarship letter</span></a></li>
+            <li><a href="#stage-3"><span class="vh" data-i18n="story.s3.title">People pretending to be officials</span></a></li>
+            <li><a href="#stage-4"><span class="vh" data-i18n="story.s4.title">Pressure to pay fast</span></a></li>
+            <li><a href="#stage-5"><span class="vh" data-i18n="story.s5.title">Payment to a personal account</span></a></li>
+            <li><a href="#stage-6"><span class="vh" data-i18n="story.s6.title">Threats and shame</span></a></li>
+          </ol>
+        </nav>
+        <div class="stage-list">
+
+          <section class="stage" id="stage-1" aria-labelledby="s1-h">
+            <div class="art" role="img" aria-label="Illustration: a phone with a chat message full of big promises." data-i18n-aria-label="story.s1.art">
+              <svg class="ill l-back" viewBox="0 0 320 240" width="320" height="240" aria-hidden="true" focusable="false"><path class="k-soft" d="M58 70C84 22 196 14 252 46s52 120 8 152-160 34-202-6S32 118 58 70z"/><circle class="k-tint" cx="262" cy="56" r="18"/><circle class="k-line" cx="50" cy="178" r="10"/></svg>
+              <svg class="ill l-mid" viewBox="0 0 320 240" width="320" height="240" aria-hidden="true" focusable="false"><ellipse class="shadow" cx="160" cy="222" rx="58" ry="8"/><rect class="k-deep" x="112" y="20" width="96" height="190" rx="18"/><rect class="k-paper" x="120" y="36" width="80" height="158" rx="9"/><rect class="k-sage" x="148" y="26" width="24" height="4" rx="2"/><rect class="k-soft" x="128" y="48" width="62" height="34" rx="9"/><path class="s s-brand" d="M136 60h40M136 71h28"/><rect class="k-tint" x="128" y="92" width="64" height="46" rx="9"/><path class="s s-olive" d="M136 104h46M136 115h40M136 126h22"/><rect class="k-soft" x="128" y="148" width="50" height="22" rx="9"/><path class="s s-brand" d="M136 159h30"/></svg>
+              <svg class="ill l-front" viewBox="0 0 320 240" width="320" height="240" aria-hidden="true" focusable="false"><path class="k-brass" transform="translate(84 66)" d="M0-14C2-4 4-2 14 0 4 2 2 4 0 14-2 4-4 2-14 0-4-2-2-4 0-14z"/><path class="k-brass" transform="translate(248 170) scale(.7)" d="M0-14C2-4 4-2 14 0 4 2 2 4 0 14-2 4-4 2-14 0-4-2-2-4 0-14z"/><path class="k-olive" transform="translate(70 150) scale(.5)" d="M0-14C2-4 4-2 14 0 4 2 2 4 0 14-2 4-4 2-14 0-4-2-2-4 0-14z"/><g transform="translate(244 96) rotate(-12)"><path class="k-brand" d="M-32 0 0-14 32 0 0 14z"/><path class="k-deep" d="M-18 6v13c11 7 25 7 36 0V6L0 14z"/><path class="s s-olive" d="M26 3v16"/><circle class="k-brass" cx="26" cy="22" r="4"/></g></svg>
+            </div>
+            <div class="stage-copy">
+              <p class="eyebrow stage-n rv" data-i18n="story.s1.n">Step 1 of 6</p>
+              <h2 id="s1-h" class="rv" data-i18n="story.s1.title">A too-good offer</h2>
+              <p class="stage-text rv" data-i18n="story.s1.text">It starts with a message. An agent promises a place at a famous university and a full scholarship. It sounds like a dream.</p>
+              <div class="flip rv"><div class="flip-inner">
+                <div class="face front">
+                  <p class="face-label"><svg class="i" data-icon="warn" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10.3 4.2 3 17.2A2 2 0 0 0 4.7 20h14.6a2 2 0 0 0 1.7-2.8L13.7 4.2a2 2 0 0 0-3.4 0z"/><path d="M12 9.5v4"/><circle cx="12" cy="16.7" r="0.9" fill="currentColor" stroke="none"/></svg><span data-i18n="story.signLabel">The warning sign</span></p>
+                  <p data-i18n="story.s1.sign">No one can promise admission or a visa. Only the university decides who gets in, and only the embassy decides the visa.</p>
+                  <p class="do"><b data-i18n="story.doLabel">Do this now</b> <span data-i18n="story.s1.do">Do not reply or pay yet. Paste the message into the free check first.</span></p>
+                  <button type="button" class="flip-btn" aria-expanded="false" aria-controls="s1-back"><svg class="i" data-icon="shield" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.5 5 6v5.5c0 4.2 2.9 7.6 7 9 4.1-1.4 7-4.8 7-9V6z"/></svg><span data-i18n="story.flip">Show the free check</span></button>
+                </div>
+                <div class="face back" id="s1-back" tabindex="-1">
+                  <p class="face-label"><svg class="i" data-icon="shield" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.5 5 6v5.5c0 4.2 2.9 7.6 7 9 4.1-1.4 7-4.8 7-9V6z"/></svg><span data-i18n="story.checkLabel">The free check</span></p>
+                  <p data-i18n="story.s1.check">Agent message check: paste a WhatsApp, SMS or email message. It looks for common scam patterns, like big promises and secrecy. The text never leaves your phone.</p>
+                  <a class="btn primary" href="?tab=message" data-tool="message"><span data-i18n="story.s1.cta">Check a message</span><svg class="i i-dir" data-icon="arrow" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h13M13 7l5 5-5 5"/></svg></a>
+                  <button type="button" class="flip-back quiet"><svg class="i i-dir" data-icon="back" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 12H6M11 7l-5 5 5 5"/></svg><span data-i18n="story.flipBack">Back to the warning sign</span></button>
+                </div>
+              </div></div>
+            </div>
+          </section>
+
+          <section class="stage alt" id="stage-2" aria-labelledby="s2-h">
+            <div class="art" role="img" aria-label="Illustration: an offer letter with a logo, a stamp and a signature." data-i18n-aria-label="story.s2.art">
+              <svg class="ill l-back" viewBox="0 0 320 240" width="320" height="240" aria-hidden="true" focusable="false"><path class="k-tint" d="M44 92c8-52 92-78 160-66s96 64 84 112-76 82-150 70-102-64-94-116z"/><rect class="k-stone" x="122" y="30" width="122" height="164" rx="6" transform="rotate(8 183 112)"/></svg>
+              <svg class="ill l-mid" viewBox="0 0 320 240" width="320" height="240" aria-hidden="true" focusable="false"><ellipse class="shadow" cx="160" cy="222" rx="70" ry="8"/><rect class="k-paper" x="92" y="20" width="132" height="190" rx="6"/><rect class="s-frame" x="92" y="20" width="132" height="190" rx="6"/><rect class="k-brand" x="106" y="34" width="22" height="22" rx="5"/><path class="s" d="M136 40h70M136 50h48"/><path class="s thin" d="M106 78h104M106 92h104M106 106h92M106 120h104M106 134h70"/></svg>
+              <svg class="ill l-front" viewBox="0 0 320 240" width="320" height="240" aria-hidden="true" focusable="false"><g transform="translate(198 172) rotate(-14)"><circle class="k-tint" r="30"/><circle class="s s-olive" r="26"/><circle class="s s-olive thin dash" r="18"/><path class="k-olive" d="M0-9 2.6-3 9-2.8 4-1 5.6 6 0 2.4-5.6 6-4-1-9-2.8-2.6-3z"/></g><path class="s s-ink" d="M104 178c8-14 14-14 12 0s8-12 14-8 4 10 10 4 10-6 16-2"/><path class="k-brass" transform="translate(256 56) scale(.8)" d="M0-14C2-4 4-2 14 0 4 2 2 4 0 14-2 4-4 2-14 0-4-2-2-4 0-14z"/><path class="k-olive" transform="translate(62 70) scale(.55)" d="M0-14C2-4 4-2 14 0 4 2 2 4 0 14-2 4-4 2-14 0-4-2-2-4 0-14z"/></svg>
+            </div>
+            <div class="stage-copy">
+              <p class="eyebrow stage-n rv" data-i18n="story.s2.n">Step 2 of 6</p>
+              <h2 id="s2-h" class="rv" data-i18n="story.s2.title">A fake admission or scholarship letter</h2>
+              <p class="stage-text rv" data-i18n="story.s2.text">Next comes a letter. It has a logo, a stamp and a signature, so it looks real. But anyone can make a letter look real.</p>
+              <div class="flip rv"><div class="flip-inner">
+                <div class="face front">
+                  <p class="face-label"><svg class="i" data-icon="warn" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10.3 4.2 3 17.2A2 2 0 0 0 4.7 20h14.6a2 2 0 0 0 1.7-2.8L13.7 4.2a2 2 0 0 0-3.4 0z"/><path d="M12 9.5v4"/><circle cx="12" cy="16.7" r="0.9" fill="currentColor" stroke="none"/></svg><span data-i18n="story.signLabel">The warning sign</span></p>
+                  <p data-i18n="story.s2.sign">Watch for a free email address like Gmail, spelling mistakes, a fee to pay within hours, or a request to keep it secret.</p>
+                  <p class="do"><b data-i18n="story.doLabel">Do this now</b> <span data-i18n="story.s2.do">Log in to the university's own applicant portal yourself. Check that the same offer is shown there.</span></p>
+                  <button type="button" class="flip-btn" aria-expanded="false" aria-controls="s2-back"><svg class="i" data-icon="shield" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.5 5 6v5.5c0 4.2 2.9 7.6 7 9 4.1-1.4 7-4.8 7-9V6z"/></svg><span data-i18n="story.flip">Show the free check</span></button>
+                </div>
+                <div class="face back" id="s2-back" tabindex="-1">
+                  <p class="face-label"><svg class="i" data-icon="shield" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.5 5 6v5.5c0 4.2 2.9 7.6 7 9 4.1-1.4 7-4.8 7-9V6z"/></svg><span data-i18n="story.checkLabel">The free check</span></p>
+                  <p data-i18n="story.s2.check">University check: see if the university is on an official register, like the UK student sponsor register or the Australian CRICOS register.</p>
+                  <a class="btn primary" href="?tab=institution" data-tool="institution"><span data-i18n="story.s2.cta">Check a university</span><svg class="i i-dir" data-icon="arrow" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h13M13 7l5 5-5 5"/></svg></a>
+                  <p class="also"><a href="guides/is-my-offer-cas-coe-real/" data-i18n="guide.is-my-offer-cas-coe-real">Is my offer letter, CAS or CoE real?</a></p>
+                  <button type="button" class="flip-back quiet"><svg class="i i-dir" data-icon="back" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 12H6M11 7l-5 5 5 5"/></svg><span data-i18n="story.flipBack">Back to the warning sign</span></button>
+                </div>
+              </div></div>
+            </div>
+          </section>
+
+          <section class="spot" id="spot" aria-labelledby="spot-h">
+            <p class="eyebrow rv" data-i18n="story.spot.eyebrow">Practice</p>
+            <h2 id="spot-h" class="rv" data-i18n="story.spot.h">Spot the fake: find the 6 warning signs</h2>
+            <p class="spot-intro rv" data-i18n="story.spot.intro">This letter is made up for practice. Tap each part that looks wrong.</p>
+            <div class="spot-wrap">
+              <div class="letter-stage">
+                <p class="badge letter-tag" data-i18n="story.spot.example">Example for practice. Not a real letter.</p>
+                <article class="letter" lang="en" dir="ltr" aria-label="Example letter for practice">
+                  <div class="lh">
+                    <svg class="crest" viewBox="0 0 44 44" width="44" height="44" aria-hidden="true" focusable="false"><circle cx="22" cy="22" r="21" fill="#2f4b40"/><path d="M12 18 22 12l10 6v2H12zM14 21h3v9h-3zM20.5 21h3v9h-3zM27 21h3v9h-3zM12 31h20v2H12z" fill="#fcfbf8"/></svg>
+                    <span class="flag block" data-flag="f2"><span class="lh-name"><span class="flag-mark"><svg class="i" data-icon="danger" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8.4 3.5h7.2l4.9 4.9v7.2l-4.9 4.9H8.4l-4.9-4.9V8.4z"/><path d="M12 8v5"/><circle cx="12" cy="16.2" r="0.9" fill="currentColor" stroke="none"/></svg><span class="vh" data-i18n="story.spot.found">Warning sign</span></span>Univercity of Northshire</span><span class="lh-sub">Office of Admisions</span></span>
+                  </div>
+                  <p class="lfrom">From: <span class="flag" data-flag="f1"><span class="flag-mark"><svg class="i" data-icon="danger" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8.4 3.5h7.2l4.9 4.9v7.2l-4.9 4.9H8.4l-4.9-4.9V8.4z"/><path d="M12 8v5"/><circle cx="12" cy="16.2" r="0.9" fill="currentColor" stroke="none"/></svg><span class="vh" data-i18n="story.spot.found">Warning sign</span></span>admissions.northshire@gmail.com</span></p>
+                  <p>Dear Student,</p>
+                  <p>Congratulations! Your admission and full scholarship are <span class="flag" data-flag="f3"><span class="flag-mark"><svg class="i" data-icon="danger" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8.4 3.5h7.2l4.9 4.9v7.2l-4.9 4.9H8.4l-4.9-4.9V8.4z"/><path d="M12 8v5"/><circle cx="12" cy="16.2" r="0.9" fill="currentColor" stroke="none"/></svg><span class="vh" data-i18n="story.spot.found">Warning sign</span></span>GUARANTEED</span>.</p>
+                  <p><span class="flag" data-flag="f4"><span class="flag-mark"><svg class="i" data-icon="danger" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8.4 3.5h7.2l4.9 4.9v7.2l-4.9 4.9H8.4l-4.9-4.9V8.4z"/><path d="M12 8v5"/><circle cx="12" cy="16.2" r="0.9" fill="currentColor" stroke="none"/></svg><span class="vh" data-i18n="story.spot.found">Warning sign</span></span>Pay the seat fee of PKR 450,000 within 24 hours</span> or your seat will go to another student.</p>
+                  <p>Send the fee to this <span class="flag" data-flag="f5"><span class="flag-mark"><svg class="i" data-icon="danger" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8.4 3.5h7.2l4.9 4.9v7.2l-4.9 4.9H8.4l-4.9-4.9V8.4z"/><path d="M12 8v5"/><circle cx="12" cy="16.2" r="0.9" fill="currentColor" stroke="none"/></svg><span class="vh" data-i18n="story.spot.found">Warning sign</span></span>personal JazzCash wallet: 03XX XXXXXXX</span>.</p>
+                  <p><span class="flag" data-flag="f6"><span class="flag-mark"><svg class="i" data-icon="danger" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8.4 3.5h7.2l4.9 4.9v7.2l-4.9 4.9H8.4l-4.9-4.9V8.4z"/><path d="M12 8v5"/><circle cx="12" cy="16.2" r="0.9" fill="currentColor" stroke="none"/></svg><span class="vh" data-i18n="story.spot.found">Warning sign</span></span>This offer is confidential. Do not discuss it with your family or teachers.</span></p>
+                  <div class="lsign">
+                    <div><svg class="sig" viewBox="0 0 120 40" width="120" height="40" aria-hidden="true" focusable="false"><path d="M4 30c10-22 18-22 16-4s10-16 18-10 4 14 14 6 12-8 20-2 10 6 20-4 12-4 22 0" fill="none" stroke="#1b1f1c" stroke-width="2" stroke-linecap="round"/></svg><p>Registrar</p></div>
+                    <svg class="seal" viewBox="0 0 64 64" width="70" height="70" aria-hidden="true" focusable="false"><circle cx="32" cy="32" r="30" fill="#ebebd8"/><circle cx="32" cy="32" r="25" fill="none" stroke="#676b38" stroke-width="3"/><circle cx="32" cy="32" r="17" fill="none" stroke="#676b38" stroke-width="2" stroke-dasharray="3 5"/><path fill="#676b38" d="M32 22l3 7 7 .3-5.5 4.4 2 7-6.5-4-6.5 4 2-7-5.5-4.4 7-.3z"/></svg>
+                  </div>
+                </article>
+              </div>
+              <div class="spot-side">
+                <div class="spot-meter" aria-hidden="true"><span class="pip"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span></div>
+                <p class="spot-count" id="spot-count" role="status"></p>
+                <ol class="spot-list">
+                  <li data-flag="f1"><span class="chip danger"><svg class="i" data-icon="danger" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8.4 3.5h7.2l4.9 4.9v7.2l-4.9 4.9H8.4l-4.9-4.9V8.4z"/><path d="M12 8v5"/><circle cx="12" cy="16.2" r="0.9" fill="currentColor" stroke="none"/></svg><span data-i18n="story.spot.found">Warning sign</span></span><p data-i18n="story.spot.f1">A free email address. Universities write from their own web address, not from Gmail or Yahoo.</p></li>
+                  <li data-flag="f2"><span class="chip danger"><svg class="i" data-icon="danger" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8.4 3.5h7.2l4.9 4.9v7.2l-4.9 4.9H8.4l-4.9-4.9V8.4z"/><path d="M12 8v5"/><circle cx="12" cy="16.2" r="0.9" fill="currentColor" stroke="none"/></svg><span data-i18n="story.spot.found">Warning sign</span></span><p data-i18n="story.spot.f2">Spelling mistakes in the university's name. Real offices check their letters with care.</p></li>
+                  <li data-flag="f3"><span class="chip danger"><svg class="i" data-icon="danger" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8.4 3.5h7.2l4.9 4.9v7.2l-4.9 4.9H8.4l-4.9-4.9V8.4z"/><path d="M12 8v5"/><circle cx="12" cy="16.2" r="0.9" fill="currentColor" stroke="none"/></svg><span data-i18n="story.spot.found">Warning sign</span></span><p data-i18n="story.spot.f3">A guarantee. No one can guarantee admission or a scholarship.</p></li>
+                  <li data-flag="f4"><span class="chip danger"><svg class="i" data-icon="danger" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8.4 3.5h7.2l4.9 4.9v7.2l-4.9 4.9H8.4l-4.9-4.9V8.4z"/><path d="M12 8v5"/><circle cx="12" cy="16.2" r="0.9" fill="currentColor" stroke="none"/></svg><span data-i18n="story.spot.found">Warning sign</span></span><p data-i18n="story.spot.f4">Pressure. A fee within 24 hours is a trick to stop you checking.</p></li>
+                  <li data-flag="f5"><span class="chip danger"><svg class="i" data-icon="danger" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8.4 3.5h7.2l4.9 4.9v7.2l-4.9 4.9H8.4l-4.9-4.9V8.4z"/><path d="M12 8v5"/><circle cx="12" cy="16.2" r="0.9" fill="currentColor" stroke="none"/></svg><span data-i18n="story.spot.found">Warning sign</span></span><p data-i18n="story.spot.f5">A personal mobile wallet. Universities do not take fees in a person's wallet.</p></li>
+                  <li data-flag="f6"><span class="chip danger"><svg class="i" data-icon="danger" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8.4 3.5h7.2l4.9 4.9v7.2l-4.9 4.9H8.4l-4.9-4.9V8.4z"/><path d="M12 8v5"/><circle cx="12" cy="16.2" r="0.9" fill="currentColor" stroke="none"/></svg><span data-i18n="story.spot.found">Warning sign</span></span><p data-i18n="story.spot.f6">Secrecy. A real university is happy for your family and teachers to check.</p></li>
+                </ol>
+                <div class="row spot-actions">
+                  <button type="button" class="spot-reveal" data-i18n="story.spot.reveal">Show all 6 signs</button>
+                  <button type="button" class="spot-reset quiet" data-i18n="story.spot.reset">Start again</button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="stage" id="stage-3" aria-labelledby="s3-h">
+            <div class="art" role="img" aria-label="Illustration: a call from an unknown caller who says they are an official." data-i18n-aria-label="story.s3.art">
+              <svg class="ill l-back" viewBox="0 0 320 240" width="320" height="240" aria-hidden="true" focusable="false"><path class="k-soft" d="M66 64C102 20 220 24 260 72s30 116-22 140-150 18-186-24S30 108 66 64z"/><path class="s s-sage" d="M232 76a40 40 0 0 1 0 56M250 62a60 60 0 0 1 0 84M88 76a40 40 0 0 0 0 56M70 62a60 60 0 0 0 0 84"/></svg>
+              <svg class="ill l-mid" viewBox="0 0 320 240" width="320" height="240" aria-hidden="true" focusable="false"><ellipse class="shadow" cx="160" cy="222" rx="54" ry="8"/><rect class="k-deep" x="116" y="22" width="88" height="188" rx="18"/><rect class="k-brand" x="123" y="36" width="74" height="158" rx="9"/><circle class="k-soft" cx="160" cy="84" r="24"/><circle class="k-sage" cx="160" cy="82" r="9"/><path class="k-sage" d="M143 104c3-9 9-13 17-13s14 4 17 13z"/><path class="k-deep" d="M148 74h24l-3-9h-18z"/><path class="s s-paper" d="M140 126h40M146 138h28"/><circle class="k-olive" cx="140" cy="172" r="11"/><circle class="k-tint" cx="180" cy="172" r="11"/></svg>
+              <svg class="ill l-front" viewBox="0 0 320 240" width="320" height="240" aria-hidden="true" focusable="false"><g transform="translate(244 160) rotate(10)"><rect class="k-paper" x="-32" y="-21" width="64" height="42" rx="6"/><rect class="s-frame" x="-32" y="-21" width="64" height="42" rx="6"/><circle class="k-brass" cx="-15" cy="0" r="10"/><path class="s thin" d="M2-7h20M2 3h14"/></g><g transform="translate(78 156)"><circle class="k-tint" r="21"/><path class="s s-olive" d="M-6-6a6 6 0 1 1 8 6c-2 1-2 2-2 5"/><circle class="k-olive" cx="0" cy="11" r="2.2"/></g></svg>
+            </div>
+            <div class="stage-copy">
+              <p class="eyebrow stage-n rv" data-i18n="story.s3.n">Step 3 of 6</p>
+              <h2 id="s3-h" class="rv" data-i18n="story.s3.title">People pretending to be officials</h2>
+              <p class="stage-text rv" data-i18n="story.s3.text">Then someone calls. They say they are from the embassy, the university or the police. They know your name, and they sound official.</p>
+              <div class="flip rv"><div class="flip-inner">
+                <div class="face front">
+                  <p class="face-label"><svg class="i" data-icon="warn" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10.3 4.2 3 17.2A2 2 0 0 0 4.7 20h14.6a2 2 0 0 0 1.7-2.8L13.7 4.2a2 2 0 0 0-3.4 0z"/><path d="M12 9.5v4"/><circle cx="12" cy="16.7" r="0.9" fill="currentColor" stroke="none"/></svg><span data-i18n="story.signLabel">The warning sign</span></p>
+                  <p data-i18n="story.s3.sign">Government offices do not phone you to demand money, and they do not threaten arrest to make you pay.</p>
+                  <p class="do"><b data-i18n="story.doLabel">Do this now</b> <span data-i18n="story.s3.do">Hang up. Find the office's number on its own official website, and call back yourself.</span></p>
+                  <button type="button" class="flip-btn" aria-expanded="false" aria-controls="s3-back"><svg class="i" data-icon="shield" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.5 5 6v5.5c0 4.2 2.9 7.6 7 9 4.1-1.4 7-4.8 7-9V6z"/></svg><span data-i18n="story.flip">Show the free check</span></button>
+                </div>
+                <div class="face back" id="s3-back" tabindex="-1">
+                  <p class="face-label"><svg class="i" data-icon="shield" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.5 5 6v5.5c0 4.2 2.9 7.6 7 9 4.1-1.4 7-4.8 7-9V6z"/></svg><span data-i18n="story.checkLabel">The free check</span></p>
+                  <p data-i18n="story.s3.check">Email or link check: paste the email address or link. It compares it with the university's real website and looks for lookalike tricks.</p>
+                  <a class="btn primary" href="?tab=contact" data-tool="contact"><span data-i18n="story.s3.cta">Check an email or link</span><svg class="i i-dir" data-icon="arrow" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h13M13 7l5 5-5 5"/></svg></a>
+                  <p class="also"><a href="guides/fake-official-calls/" data-i18n="guide.fake-official-calls">Fake calls from UKVI, FIA or the police</a></p>
+                  <button type="button" class="flip-back quiet"><svg class="i i-dir" data-icon="back" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 12H6M11 7l-5 5 5 5"/></svg><span data-i18n="story.flipBack">Back to the warning sign</span></button>
+                </div>
+              </div></div>
+            </div>
+          </section>
+
+          <section class="stage alt" id="stage-4" aria-labelledby="s4-h">
+            <div class="art" role="img" aria-label="Illustration: a clock, an hourglass and a demand to pay at once." data-i18n-aria-label="story.s4.art">
+              <svg class="ill l-back" viewBox="0 0 320 240" width="320" height="240" aria-hidden="true" focusable="false"><path class="k-tint" d="M50 84c14-50 100-72 168-56s88 76 70 120-90 72-156 58S36 134 50 84z"/><rect class="k-stone" x="216" y="34" width="64" height="64" rx="8"/><rect class="k-sage" x="216" y="34" width="64" height="16" rx="8"/><path class="s thin" d="M230 64h10M248 64h10M230 80h10M248 80h10"/></svg>
+              <svg class="ill l-mid" viewBox="0 0 320 240" width="320" height="240" aria-hidden="true" focusable="false"><ellipse class="shadow" cx="150" cy="218" rx="64" ry="8"/><path class="k-deep" d="M96 58a24 24 0 0 1 32-10L106 80a24 24 0 0 1-10-22zM204 58a24 24 0 0 0-32-10l22 32a24 24 0 0 0 10-22z"/><circle class="k-deep" cx="150" cy="122" r="78"/><circle class="k-paper" cx="150" cy="122" r="66"/><path class="s" d="M150 64v10M150 170v10M92 122h10M198 122h10"/><path class="s s-ink" d="M150 122V86M150 122l26 16"/><circle class="k-deep" cx="150" cy="122" r="6"/></svg>
+              <svg class="ill l-front" viewBox="0 0 320 240" width="320" height="240" aria-hidden="true" focusable="false"><g transform="translate(252 168) rotate(12)"><path class="k-brass" d="M-17-25h34v7L4 0l13 18v7h-34v-7L-4 0-17-18z"/><path class="k-tint" d="M-9-15h18L0-4zM-9 18 0 7l9 11z"/></g><path class="s s-olive" d="M36 98h28M28 120h34M40 142h24"/></svg>
+            </div>
+            <div class="stage-copy">
+              <p class="eyebrow stage-n rv" data-i18n="story.s4.n">Step 4 of 6</p>
+              <h2 id="s4-h" class="rv" data-i18n="story.s4.title">Pressure to pay fast</h2>
+              <p class="stage-text rv" data-i18n="story.s4.text">Now the clock starts. &quot;Pay today or you lose your seat.&quot; &quot;The scholarship closes tonight.&quot; They want you to rush.</p>
+              <div class="flip rv"><div class="flip-inner">
+                <div class="face front">
+                  <p class="face-label"><svg class="i" data-icon="warn" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10.3 4.2 3 17.2A2 2 0 0 0 4.7 20h14.6a2 2 0 0 0 1.7-2.8L13.7 4.2a2 2 0 0 0-3.4 0z"/><path d="M12 9.5v4"/><circle cx="12" cy="16.7" r="0.9" fill="currentColor" stroke="none"/></svg><span data-i18n="story.signLabel">The warning sign</span></p>
+                  <p data-i18n="story.s4.sign">Rushing is the scammer's best tool. Real deadlines are written on the university's own website.</p>
+                  <p class="do"><b data-i18n="story.doLabel">Do this now</b> <span data-i18n="story.s4.do">Stop for one day. Show everything to a parent, a teacher or someone you trust.</span></p>
+                  <button type="button" class="flip-btn" aria-expanded="false" aria-controls="s4-back"><svg class="i" data-icon="shield" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.5 5 6v5.5c0 4.2 2.9 7.6 7 9 4.1-1.4 7-4.8 7-9V6z"/></svg><span data-i18n="story.flip">Show the free check</span></button>
+                </div>
+                <div class="face back" id="s4-back" tabindex="-1">
+                  <p class="face-label"><svg class="i" data-icon="shield" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.5 5 6v5.5c0 4.2 2.9 7.6 7 9 4.1-1.4 7-4.8 7-9V6z"/></svg><span data-i18n="story.checkLabel">The free check</span></p>
+                  <p data-i18n="story.s4.check">Before you pay check: answer a few questions about the payment. It shows the warning signs before any money leaves.</p>
+                  <a class="btn primary" href="?tab=pay" data-tool="pay"><span data-i18n="story.s4.cta">Check a payment</span><svg class="i i-dir" data-icon="arrow" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h13M13 7l5 5-5 5"/></svg></a>
+                  <button type="button" class="flip-back quiet"><svg class="i i-dir" data-icon="back" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 12H6M11 7l-5 5 5 5"/></svg><span data-i18n="story.flipBack">Back to the warning sign</span></button>
+                </div>
+              </div></div>
+            </div>
+          </section>
+
+          <section class="stage" id="stage-5" aria-labelledby="s5-h">
+            <div class="art" role="img" aria-label="Illustration: a bank card, with money going to a person instead of a university." data-i18n-aria-label="story.s5.art">
+              <svg class="ill l-back" viewBox="0 0 320 240" width="320" height="240" aria-hidden="true" focusable="false"><path class="k-soft" d="M60 66c32-44 156-52 208-14s40 124-12 152-164 22-200-22S28 110 60 66z"/><g class="k-line"><path d="M28 98 70 76l42 22z"/><rect x="34" y="102" width="72" height="6"/><rect x="38" y="110" width="8" height="40"/><rect x="56" y="110" width="8" height="40"/><rect x="74" y="110" width="8" height="40"/><rect x="92" y="110" width="8" height="40"/><rect x="32" y="152" width="76" height="8"/></g></svg>
+              <svg class="ill l-mid" viewBox="0 0 320 240" width="320" height="240" aria-hidden="true" focusable="false"><ellipse class="shadow" cx="166" cy="210" rx="70" ry="8"/><g transform="rotate(-8 165 125)"><rect class="k-brand" x="92" y="76" width="150" height="96" rx="12"/><rect class="k-deep" x="92" y="96" width="150" height="16"/><rect class="k-brass" x="108" y="122" width="26" height="20" rx="4"/><path class="s s-paper" d="M146 152h24M176 152h24M206 152h20"/></g></svg>
+              <svg class="ill l-front" viewBox="0 0 320 240" width="320" height="240" aria-hidden="true" focusable="false"><path class="s s-ink dash" d="M214 70c10-20 18-26 28-28"/><path class="s s-ink" d="m234 36 10 6-6 9"/><circle class="k-olive" cx="270" cy="62" r="15"/><path class="k-olive" d="M243 108c4-17 14-25 27-25s23 8 27 25z"/><circle class="k-brass" cx="214" cy="192" r="13"/><circle class="s s-brass thin" cx="214" cy="192" r="8"/><circle class="k-brass" cx="240" cy="204" r="10"/></svg>
+            </div>
+            <div class="stage-copy">
+              <p class="eyebrow stage-n rv" data-i18n="story.s5.n">Step 5 of 6</p>
+              <h2 id="s5-h" class="rv" data-i18n="story.s5.title">Payment to a personal account</h2>
+              <p class="stage-text rv" data-i18n="story.s5.text">They send bank details. The account is in a person's name, or it is a mobile wallet. They say it is faster this way.</p>
+              <div class="flip rv"><div class="flip-inner">
+                <div class="face front">
+                  <p class="face-label"><svg class="i" data-icon="warn" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10.3 4.2 3 17.2A2 2 0 0 0 4.7 20h14.6a2 2 0 0 0 1.7-2.8L13.7 4.2a2 2 0 0 0-3.4 0z"/><path d="M12 9.5v4"/><circle cx="12" cy="16.7" r="0.9" fill="currentColor" stroke="none"/></svg><span data-i18n="story.signLabel">The warning sign</span></p>
+                  <p data-i18n="story.s5.sign">Universities take fees through their own portal, their own bank account or a payment service linked from their own website. Not through a person's account, a mobile wallet, cash or crypto.</p>
+                  <p class="do"><b data-i18n="story.doLabel">Do this now</b> <span data-i18n="story.s5.do">Pay only through the official portal, or to the bank details on the university's own website.</span></p>
+                  <button type="button" class="flip-btn" aria-expanded="false" aria-controls="s5-back"><svg class="i" data-icon="shield" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.5 5 6v5.5c0 4.2 2.9 7.6 7 9 4.1-1.4 7-4.8 7-9V6z"/></svg><span data-i18n="story.flip">Show the free check</span></button>
+                </div>
+                <div class="face back" id="s5-back" tabindex="-1">
+                  <p class="face-label"><svg class="i" data-icon="shield" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.5 5 6v5.5c0 4.2 2.9 7.6 7 9 4.1-1.4 7-4.8 7-9V6z"/></svg><span data-i18n="story.checkLabel">The free check</span></p>
+                  <p data-i18n="story.s5.check">Before you pay check: compare the account name with the university's name, and see the warning signs.</p>
+                  <a class="btn primary" href="?tab=pay" data-tool="pay"><span data-i18n="story.s4.cta">Check a payment</span><svg class="i i-dir" data-icon="arrow" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h13M13 7l5 5-5 5"/></svg></a>
+                  <p class="also"><a href="guides/pay-fees-and-rent-safely/" data-i18n="guide.pay-fees-and-rent-safely">Pay fees and rent safely</a></p>
+                  <button type="button" class="flip-back quiet"><svg class="i i-dir" data-icon="back" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 12H6M11 7l-5 5 5 5"/></svg><span data-i18n="story.flipBack">Back to the warning sign</span></button>
+                </div>
+              </div></div>
+            </div>
+          </section>
+
+          <section class="stage alt" id="stage-6" aria-labelledby="s6-h">
+            <div class="art" role="img" aria-label="Illustration: a phone with a threatening message, and a trusted person sending care." data-i18n-aria-label="story.s6.art">
+              <svg class="ill l-back" viewBox="0 0 320 240" width="320" height="240" aria-hidden="true" focusable="false"><path class="k-tint" d="M52 80c16-48 104-70 170-54s86 78 66 122-92 70-156 54S36 128 52 80z"/></svg>
+              <svg class="ill l-mid" viewBox="0 0 320 240" width="320" height="240" aria-hidden="true" focusable="false"><ellipse class="shadow" cx="182" cy="222" rx="54" ry="8"/><rect class="k-deep" x="138" y="22" width="88" height="188" rx="18"/><rect class="k-paper" x="145" y="36" width="74" height="158" rx="9"/><rect class="k-deep" x="152" y="56" width="60" height="46" rx="10"/><path class="s s-paper" d="M182 66v15"/><circle class="k-paper" cx="182" cy="91" r="3"/><path class="s" d="M156 124h50M156 138h36M156 152h44"/></svg>
+              <svg class="ill l-front" viewBox="0 0 320 240" width="320" height="240" aria-hidden="true" focusable="false"><circle class="k-sage" cx="72" cy="132" r="17"/><path class="k-sage" d="M40 192c4-22 17-33 32-33s28 11 32 33z"/><g transform="translate(92 84)"><rect class="k-paper" x="-26" y="-20" width="52" height="40" rx="10"/><rect class="s-frame" x="-26" y="-20" width="52" height="40" rx="10"/><path class="k-olive" d="M0 10C-12 2-15-5-10-10c3-3 8-2 10 2 2-4 7-5 10-2 5 5 2 12-10 20z"/></g><path class="k-brass" transform="translate(262 60) scale(.75)" d="M0-14C2-4 4-2 14 0 4 2 2 4 0 14-2 4-4 2-14 0-4-2-2-4 0-14z"/></svg>
+            </div>
+            <div class="stage-copy">
+              <p class="eyebrow stage-n rv" data-i18n="story.s6.n">Step 6 of 6</p>
+              <h2 id="s6-h" class="rv" data-i18n="story.s6.title">Threats and shame</h2>
+              <p class="stage-text rv" data-i18n="story.s6.text">When the student asks questions, the mood changes. There are threats, and &quot;Do not tell anyone.&quot; Many students feel alone and ashamed.</p>
+              <div class="flip rv"><div class="flip-inner">
+                <div class="face front">
+                  <p class="face-label"><svg class="i" data-icon="heart" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 19.5s-7.5-4.4-7.5-10a4.2 4.2 0 0 1 7.5-2.6 4.2 4.2 0 0 1 7.5 2.6c0 5.6-7.5 10-7.5 10z"/></svg><span data-i18n="story.s6.label">Remember this</span></p>
+                  <p data-i18n="story.s6.sign">Being scammed is never your fault. Scammers fool smart, careful people every day.</p>
+                  <p class="do"><b data-i18n="story.doLabel">Do this now</b> <span data-i18n="story.s6.do">Tell someone you trust today. In danger right now? Call Rescue 1122 or Police 15.</span></p>
+                  <button type="button" class="flip-btn" aria-expanded="false" aria-controls="s6-back"><svg class="i" data-icon="shield" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.5 5 6v5.5c0 4.2 2.9 7.6 7 9 4.1-1.4 7-4.8 7-9V6z"/></svg><span data-i18n="story.s6.flip">Show where to get help</span></button>
+                </div>
+                <div class="face back" id="s6-back" tabindex="-1">
+                  <p class="face-label"><svg class="i" data-icon="help" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.25"/><circle cx="12" cy="12" r="3.5"/><path d="m6.2 6.2 3.3 3.3M14.5 14.5l3.3 3.3M17.8 6.2l-3.3 3.3M9.5 14.5l-3.3 3.3"/></svg><span data-i18n="story.s6.helpLabel">Help you can get</span></p>
+                  <p data-i18n="story.s6.check">Help: people and public services you can contact today, and what to do if you already paid. You do not have to face this alone.</p>
+                  <a class="btn primary" href="?tab=help" data-goto="help"><span data-i18n="story.s6.cta">Open Help</span><svg class="i i-dir" data-icon="arrow" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h13M13 7l5 5-5 5"/></svg></a>
+                  <p class="also"><a href="guides/already-paid-what-to-do/" data-i18n="guide.already-paid-what-to-do">I already paid a scammer or fake agent: what to do now</a></p>
+                  <button type="button" class="flip-back quiet"><svg class="i i-dir" data-icon="back" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 12H6M11 7l-5 5 5 5"/></svg><span data-i18n="story.flipBack">Back to the warning sign</span></button>
+                </div>
+              </div></div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <section class="finale" id="story-end" aria-labelledby="end-h">
+        <div class="finale-band">
+          <svg class="watermark" viewBox="0 0 540 400" width="280" height="207" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M0 0H266V225C266 237 274 244 287 252L305 262C307 268 306 272 302 276C293 283 279 290 265 296L129 364V78C129 65 137 54 152 48C127 39 100 35 65 36C35 37 15 42 0 48ZM291 0H383C475 0 539 63 539 143C539 203 500 255 422 275C418 264 424 253 411 242C385 221 350 218 315 204C300 198 291 192 291 180ZM307 264C330 273 360 286 373 295C381 300 385 306 385 316V400H210L275 351C305 328 327 313 327 295C327 283 319 274 307 264Z"/></svg>
+          <p class="eyebrow rv" data-i18n="story.endEyebrow">Your turn</p>
+          <h2 id="end-h" class="rv" data-i18n="story.endH">Four free checks. Use them before you trust anyone or pay.</h2>
+          <p class="rv" data-i18n="banner.private">Nothing you type in these free checks leaves your phone. No tracking.</p>
+          <p class="rv"><strong data-i18n="banner.limits">These checks can warn you about danger. They can never confirm that you were admitted.</strong></p>
+          <ul class="check-cards">
+            <li><a class="check-card" href="?tab=institution" data-tool="institution"><span class="cc-icon"><svg class="i" data-icon="building" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 9.5 12 5l8.5 4.5"/><path d="M5.5 10v7M9.8 10v7M14.2 10v7M18.5 10v7"/><path d="M3.5 19.5h17"/></svg></span><span class="cc-title" data-i18n="nav.institution">University</span><span class="cc-text" data-i18n="story.c.inst">Is the university on an official register?</span><span class="cc-go"><span data-i18n="story.c.go">Start</span><svg class="i i-dir" data-icon="arrow" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h13M13 7l5 5-5 5"/></svg></span></a></li>
+            <li><a class="check-card" href="?tab=contact" data-tool="contact"><span class="cc-icon"><svg class="i" data-icon="mail" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3.5" y="6" width="17" height="12" rx="1.5"/><path d="m4 7 8 6 8-6"/></svg></span><span class="cc-title" data-i18n="nav.contact">Email or link</span><span class="cc-text" data-i18n="story.c.contact">Did this email or link really come from the university?</span><span class="cc-go"><span data-i18n="story.c.go">Start</span><svg class="i i-dir" data-icon="arrow" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h13M13 7l5 5-5 5"/></svg></span></a></li>
+            <li><a class="check-card" href="?tab=message" data-tool="message"><span class="cc-icon"><svg class="i" data-icon="chat" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 5.5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-8l-4 3v-3H5a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1z"/><path d="M8 10h8M8 13h5"/></svg></span><span class="cc-title" data-i18n="nav.message">Agent message</span><span class="cc-text" data-i18n="story.c.msg">Does this message use common scam tricks?</span><span class="cc-go"><span data-i18n="story.c.go">Start</span><svg class="i i-dir" data-icon="arrow" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h13M13 7l5 5-5 5"/></svg></span></a></li>
+            <li><a class="check-card" href="?tab=pay" data-tool="pay"><span class="cc-icon"><svg class="i" data-icon="money" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3.5" y="6.5" width="17" height="11" rx="1.5"/><circle cx="12" cy="12" r="2.5"/><path d="M6.5 9.5v5M17.5 9.5v5"/></svg></span><span class="cc-title" data-i18n="nav.pay">Before you pay</span><span class="cc-text" data-i18n="story.c.pay">See the warning signs before any money leaves.</span><span class="cc-go"><span data-i18n="story.c.go">Start</span><svg class="i i-dir" data-icon="arrow" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h13M13 7l5 5-5 5"/></svg></span></a></li>
+          </ul>
+        </div>
+        <h2 class="section-title" data-i18n="story.moreH">Keep learning, and get help</h2>
+        <ul class="more-cards">
+          <li><a class="more-card" href="guides/"><svg class="i" data-icon="book" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 7c-1.8-1.3-4.3-1.8-7.5-1.5v12.5c3.2-.3 5.7.2 7.5 1.5 1.8-1.3 4.3-1.8 7.5-1.5V5.5C16.3 5.2 13.8 5.7 12 7z"/><path d="M12 7v12.5"/></svg><span><b data-i18n="guides.title">Guides</b><span data-i18n="story.m.guides">Plain guides with the steps and the official sources.</span></span></a></li>
+          <li><a class="more-card" href="?tab=news" data-goto="news"><svg class="i" data-icon="news" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 5h11v14H6.5A1.5 1.5 0 0 1 5 17.5z"/><path d="M16 9h3v8.5a1.5 1.5 0 0 1-3 0"/><path d="M8 8.5h5M8 12h5M8 15.5h3"/></svg><span><b data-i18n="nav.news">News</b><span data-i18n="story.m.news">Recent scam news, with how to protect yourself.</span></span></a></li>
+          <li><a class="more-card" href="?tab=help" data-goto="help"><svg class="i" data-icon="help" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.25"/><circle cx="12" cy="12" r="3.5"/><path d="m6.2 6.2 3.3 3.3M14.5 14.5l3.3 3.3M17.8 6.2l-3.3 3.3M9.5 14.5l-3.3 3.3"/></svg><span><b data-i18n="nav.help">Help</b><span data-i18n="story.m.help">People and services you can contact today.</span></span></a></li>
+        </ul>
+        <p><a class="story-again" href="#story-top"><svg class="i" data-icon="undo" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 8H5V5"/><path d="M5.4 8A7.5 7.5 0 1 1 5 13"/></svg><span data-i18n="story.again">Read the story again from the start</span></a></p>
+      </section>
+    </section>
 
     <section id="panel-check" class="panel" data-panel="check" aria-labelledby="check-h">
       <div class="page-head">
@@ -168,6 +452,9 @@
             <label><input type="checkbox" id="pay-agent"> <span data-i18n="pay.payingAgent">The money goes to an agent, not the institution</span></label>
             <label><input type="checkbox" id="pay-pressure"> <span data-i18n="pay.pressure">I was told to pay urgently or lose my seat</span></label>
             <label><input type="checkbox" id="pay-large"> <span data-i18n="pay.large">This is a large amount for my family (or we are selling property/gold)</span></label>
+            <label><input type="checkbox" id="pay-paid-before"> <span data-i18n="pay.paidBefore">I have paid this person before</span></label>
+            <label><input type="checkbox" id="pay-new-fee"> <span data-i18n="pay.newFeeAfter">A new fee appeared after I paid</span></label>
+            <label><input type="checkbox" id="pay-receipt-other"> <span data-i18n="pay.receiptOther">I have a receipt that did not come from the university's own portal or email</span></label>
           </fieldset>
           <button type="submit" class="primary wide" data-i18n="pay.submit">Check this payment</button>
         </form>

@@ -17,7 +17,8 @@ const prefs = {
 // Four app tabs (Home is the account, in portal/), and inside Check the four tools.
 // Guide pages link straight to a tool (?tab=message&lang=ur) or a panel (?tab=help). Only known values are accepted.
 const TOOLS = ['institution', 'contact', 'message', 'pay'];
-const PANELS = ['check', 'news', 'help', 'about'];
+// 'story' is the home page (the scrollytelling story); an address with ?tab= opens that panel instead.
+const PANELS = ['story', 'check', 'news', 'help', 'about'];
 const LEGACY = { learn: 'help' };
 const params = new URLSearchParams(location.search);
 const rawTab = LEGACY[params.get('tab')] || params.get('tab');
@@ -29,7 +30,7 @@ const savedTool = prefs.get('tab', 'institution');
 const state = {
   lang: linkLang || prefs.get('lang', (navigator.language || '').startsWith('ur') ? 'ur' : 'en'),
   tab: linkTool || (TOOLS.includes(savedTool) ? savedTool : 'institution'),
-  panel: linkPanel || 'check',
+  panel: linkPanel || 'story',
   index: null,
   domains: null,
   selected: null,
@@ -98,7 +99,21 @@ function showPanel(name, { focus = false, push = false } = {}) {
     history.pushState({ panel: name }, '', u);
   }
   if (name === 'news') loadNews();
+  if (name === 'story') loadStory();
   if (focus) ($(`[data-panel="${name}"] h1`) || $('#main')).focus({ preventScroll: false });
+}
+
+// The story's moving parts are a separate module too: the story itself is plain HTML and reads without it.
+let story = null;
+let storyLoading = false;
+async function loadStory() {
+  if (story || storyLoading) return;
+  storyLoading = true;
+  try {
+    const { mountStory } = await import('./ui/story.js');
+    story = mountStory($('#panel-story'), { getT: () => t, getLang: () => state.lang });
+  } catch { /* the story still reads as plain sections */ }
+  storyLoading = false;
 }
 
 // News is a separate module, loaded only when the tab opens, so the checks keep working offline without it.
@@ -151,6 +166,14 @@ function flagItem(f) {
   const vars = { ...f };
   return el('li', { class: `sev-${f.severity}` }, t(`flag.${f.msg || f.id}`, vars),
     f.excerpt ? el('q', { class: 'excerpt' }, f.excerpt) : null);
+}
+
+// Every danger result also says where to go if it already happened, and the help lines (audit gap G8).
+function dangerHelp() {
+  const guide = `${state.lang === 'ur' ? 'ur/' : ''}guides/already-paid-what-to-do/`;
+  return el('div', { class: 'safe danger-help' },
+    el('p', {}, el('strong', {}, t('res.alreadyH')), ' ', el('a', { href: guide }, t('tribute.nextLink'))),
+    el('p', {}, t('res.lines'), ' ', el('a', { href: '?tab=help', onclick: (e) => { e.preventDefault(); showPanel('help', { focus: true, push: true }); } }, t('res.linesLink'))));
 }
 
 function safeSteps() {
@@ -253,7 +276,7 @@ function renderMessage() {
   const help = r.needsHelp
     ? el('p', { class: 'warn' }, t('msg.needsHelp'), ' ', el('a', { href: '?tab=help', onclick: (e) => { e.preventDefault(); showPanel('help', { focus: true, push: true }); } }, t('msg.needsHelpLink')))
     : null;
-  out.replaceChildren(...[help, box, safeSteps()].filter(Boolean));
+  out.replaceChildren(...[help, box, r.level === 'danger' ? dangerHelp() : null, safeSteps()].filter(Boolean));
 }
 
 // ---------- payment ----------
@@ -279,13 +302,16 @@ function renderPayment(scroll = false) {
     payingAgent: $('#pay-agent').checked,
     pressure: $('#pay-pressure').checked,
     largeAmount: $('#pay-large').checked,
+    paidBefore: $('#pay-paid-before').checked,
+    newFeeAfterPaying: $('#pay-new-fee').checked,
+    receiptNotFromUniversity: $('#pay-receipt-other').checked,
   });
   const extra = [];
   if (r.ibanCheck?.valid) extra.push(el('p', {}, t('pay.ibanValid', { country: r.ibanCheck.country })));
   const box = r.level === 'no_obvious_issue'
     ? levelBox('ok', t('pay.noIssue'), [], [...extra, el('p', {}, t('pay.noIssueExplain'))])
     : levelBox(r.level, null, r.flags.map(flagItem), extra);
-  out.replaceChildren(box, safeSteps());
+  out.replaceChildren(...[box, r.level === 'danger' || r.escalate ? dangerHelp() : null, safeSteps()].filter(Boolean));
   if (scroll) out.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
 }
 
@@ -335,9 +361,24 @@ function init() {
       showPanel(a.dataset.nav || a.dataset.goto, { focus: true, push: true });
     });
   }
+  // Links straight to one check (the story's buttons): open Check on that tool, one tap.
+  for (const a of $$('[data-tool]')) {
+    a.addEventListener('click', (e) => {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || !TOOLS.includes(a.dataset.tool)) return;
+      e.preventDefault();
+      showTab(a.dataset.tool);
+      showPanel('check', { focus: true });
+      const u = new URL(location.href);
+      u.searchParams.set('tab', a.dataset.tool);
+      u.hash = '';
+      history.pushState({ panel: 'check' }, '', u);
+    });
+  }
   window.addEventListener('popstate', () => {
-    const p = new URLSearchParams(location.search).get('tab');
-    showPanel(PANELS.includes(p) ? p : 'check');
+    const raw = new URLSearchParams(location.search).get('tab');
+    const p = LEGACY[raw] || raw;
+    if (TOOLS.includes(p)) showTab(p);
+    else showPanel(PANELS.includes(p) ? p : 'story');
   });
   $('.seg[role=tablist]').addEventListener('keydown', (e) => {
     if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(e.key)) return;
@@ -364,11 +405,13 @@ function init() {
   $('#msg-clear').addEventListener('click', () => { $('#msg-q').value = ''; renderMessage(); });
   $('#pay-form').addEventListener('submit', (e) => { e.preventDefault(); paymentChecked = true; renderPayment(true); });
 
-  state.rerender = { inst: renderInstitutionResults, contact: renderContact, msg: renderMessage, pay: () => renderPayment() };
+  state.rerender = { inst: renderInstitutionResults, contact: renderContact, msg: renderMessage, pay: () => renderPayment(), story: () => story?.relabel() };
   if (!$(`#tab-${state.tab}`)) state.tab = 'institution';
   const wanted = state.panel;
   showTab(state.tab);
   showPanel(wanted);
+  // boot.js held the first paint on the right panel; from here the hidden attributes decide.
+  delete document.documentElement.dataset.boot;
   applyLanguage();
   loadRegistry();
 

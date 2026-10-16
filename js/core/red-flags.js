@@ -15,6 +15,108 @@ import { foldLookalikes, stripFormat } from './normalize.js';
 //   help       the situation needs people, not just a warning: the app opens the help contacts.
 // Urdu-script rules use the `u` flag and no `\b`, because `\b` does not work next to Urdu letters.
 
+
+// ---- Laiba coverage gaps G4, G5, G9, G14, G16 (docs/plan/LAIBA-COVERAGE-AUDIT.md section 7) -------------------------
+// Urdu letters are matched as whole words: no Urdu letter may sit directly before or after, and the word داخلہ
+// ("admission") does not count inside the phrases وزارت داخلہ, وزیر داخلہ, امور داخلہ ("Interior Ministry"),
+// the same defect the news classifier had. Urdu-script patterns carry the `u` flag and never use `\b`.
+// Letters and marks only: the Urdu comma (U+060C), full stop and digits do not count as part of a word.
+const UR_L = '\\u0620-\\u065F\\u066E-\\u06D3\\u06D5\\u06FA-\\u06FF';
+const uw = (words) => `(?<![${UR_L}])(?:${words})(?![${UR_L}])`;
+const UR_HOME = '(?<!(?:وزارت|وزیر|امور|سیکریٹری|سیکرٹری|محکمہ|مشیر|اخبار|ریاست)\\s)';
+const UR_ADMISSION = `(?<![${UR_L}])${UR_HOME}داخلہ(?![${UR_L}])|${uw('ایڈمیشن|سیٹ')}`;
+const UR_CATEGORY = `${UR_ADMISSION}|${uw('ویزا|ویزہ|ویزے|اسکالرشپ|وظیفہ|نوکری|ملازمت|جاب')}`;
+const UR_ORG = '(?:سپریم کورٹ|ہائی کورٹ|ڈسٹرکٹ کورٹ|عدالت|وزارت|سفارت\\s*خانے|سفارتخانے|سفارت\\s*خانہ|ایف آئی اے|سیکرٹریٹ|سیکریٹریٹ|ہائی کمیشن|ایمبیسی|حکومت)';
+
+const ORG_EN = '(?:supreme court|high court|district court|the court|courts?|ministry|secretariat|embassy|high commission|consulate|fia|nccia|nab|home office|ukvi|foreign office|govt|government|hec|immigration|prime minister(?:\'s)? (?:office|house)|president house|parliament|assembly)';
+const CATEGORY_EN = '(?:admission|scholarship|visa|job|work permit|seat|offer letter|appointment|sponsorship|dakhla|dakhila|naukri)';
+const OFFER_EN = new RegExp(String.raw`\b(?:(?:can|will|'ll|could|able to|going to|shall)\s+(?:\w+\s+){0,3}(?:get|arrange|give|provide|secure|fix|sort|organi[sz]e|manage|guarantee|obtain|process|speed|help)\w*|get(?:ting)?\s+you|help\s+you\s+(?:get|with)|arrange\w*|guarantee\w*)\b[^.!?]{0,60}\b${CATEGORY_EN}\b`, 'i');
+const OFFER_EN_REVERSE = new RegExp(String.raw`\b${CATEGORY_EN}\b[^.!?]{0,40}\b(?:dilwa|lagwa|dila|karwa|laga\s+d|arrange|guarantee|pakk[ai])\w*`, 'i');
+const OFFER_UR = [new RegExp(`(?:${UR_CATEGORY})[^.۔!?]{0,50}(?:دلوا|لگوا|کروا|دلا\\s*د|انتظام|گارنٹی|پکا|پکی)`, 'u'),
+  new RegExp(`(?:دلوا|لگوا|کروا|انتظام|گارنٹی)[^.۔!?]{0,50}(?:${UR_CATEGORY})`, 'u')];
+
+const POST_CLAIMS = [
+  new RegExp(String.raw`\b(?:i|we)\s*(?:am|'m|are)?\s*(?:work(?:ing|s)?|serv(?:e|es|ing)|employed|posted|based)\s+(?:at|in|inside)\s+(?:the\s+)?(?:\w+\s+){0,2}?${ORG_EN}\b`, 'i'),
+  new RegExp(String.raw`\b(?:i am|i'm|my (?:uncle|father|brother|friend|cousin|relative|husband|wife|contact))\s+(?:is\s+)?(?:a\s+|an\s+|the\s+)?(?:senior\s+)?(?:judge|registrar|officer|official|secretary|minister|ambassador|consul|magistrate)\b`, 'i'),
+  new RegExp(String.raw`\b(?:i|we)\s+(?:have|got|know)\s+(?:\w+\s+){0,2}(?:contacts?|connections?|links?|people|friends?|relatives?|officers?)\s+(?:in|at|inside|with)\s+(?:the\s+)?(?:\w+\s+){0,2}?${ORG_EN}\b`, 'i'),
+  new RegExp(String.raw`\bmy\s+(?:contacts?|connections?)\b[^.!?]{0,15}\b(?:in|at|inside)\s+(?:the\s+)?(?:\w+\s+){0,2}?${ORG_EN}\b`, 'i'),
+  // Roman Urdu: "mera taluq supreme court se hai", "meri jaan pehchan embassy mein hai", "wazarat mein meri sifarish".
+  /\b(?:mera|meri|mere|humara|hamara)\s+(?:taluq|talluq|rabta|jaan\s*pehchan|pehchan|sifarish)\b[^.!?]{0,40}\b(?:court|adalat|ministry|wazarat|embassy|sefarat|safarat|fia|sarkar|sarkari|secretariat|high commission)\b/i,
+  /\b(?:court|adalat|ministry|wazarat|embassy|sefarat|safarat|fia|sarkari|secretariat)\b[^.!?]{0,30}\b(?:mein|main|me)\s+(?:meri|mera|mere)\s+(?:jaan\s*pehchan|sifarish|taluq|pehchan)\b/i,
+  /\b(?:main|mai|hum|ham)\s+(?:supreme court|high court|court|adalat|ministry|wazarat|embassy|sefarat|fia|sarkari)\b[^.!?]{0,30}\b(?:mein|main|me)\s+(?:kaam|job|naukri|posted)\b/i,
+  // Urdu script: "میں سپریم کورٹ میں کام کرتا ہوں", "عدالت سے میرا تعلق ہے".
+  new RegExp(`${UR_ORG}[^.۔!?]{0,30}(?:کام کرتا ہوں|کام کرتی ہوں|ملازم ہوں|ملازمت کرتا|ملازمت کرتی|تعینات ہوں|افسر ہوں|جج ہوں)`, 'u'),
+  new RegExp(`${UR_ORG}[^.۔!?]{0,25}(?:میرا|میری|میرے)\\s+(?:تعلق|جان پہچان|واقفیت|رابطہ|رابطے)`, 'u'),
+  new RegExp(`(?:میرا|میری|میرے|ہمارا|ہماری)\\s+(?:تعلق|جان پہچان|واقفیت|رابطہ|رابطے)[^.۔!?]{0,40}${UR_ORG}`, 'u'),
+];
+// A promised government job, for anyone, is its own sign.
+const GOV_JOB = [
+  /\b(?:dilwa|lagwa|dila|arrange|guarantee|promise|get you|give you|provide)\w*\b[^.!?]{0,30}\b(?:sarkari\s+(?:naukri|job)|government\s+job|govt\.?\s+job)\b/i,
+  /\b(?:sarkari\s+(?:naukri|job)|government\s+job|govt\.?\s+job)\b[^.!?]{0,30}\b(?:dilwa|lagwa|dila|pakk[ai]|guarantee|arrange)\w*/i,
+  new RegExp(`${uw('سرکاری نوکری|سرکاری ملازمت')}[^.۔!?]{0,30}(?:دلوا|لگوا|پکی|گارنٹی)|(?:دلوا|لگوا|گارنٹی)[^.۔!?]{0,30}${uw('سرکاری نوکری|سرکاری ملازمت')}`, 'u'),
+];
+
+// The same clause must not hold a plain disclaimer ("cannot guarantee", "never promise", "visit visa holders may not work").
+const DISCLAIM = /\b(no|not|never|cannot|can't|can not|won't|doesn't|don't|isn't|aren't|unable|nobody|without|nahi|nahin|mat)\b|n't\b|(?<![؀-ۿ])(?:نہیں|مت|کبھی نہیں)(?![؀-ۿ])/iu;
+// Urdu puts the negative after the verb: "کام کرنے کی اجازت نہیں ہے" (work is not allowed).
+const URDU_NEG_AFTER = /^[^.۔!?]{0,40}?(?<![\u0620-\u065F\u066E-\u06D3\u06D5\u06FA-\u06FF])(?:نہیں|منع|ممنوع)(?![\u0620-\u065F\u066E-\u06D3\u06D5\u06FA-\u06FF])/u;
+function clauseBefore(src, index) {
+  const cut = Math.max(src.lastIndexOf('.', index), src.lastIndexOf('!', index), src.lastIndexOf('?', index), src.lastIndexOf('۔', index),
+    src.lastIndexOf(',', index), src.lastIndexOf(';', index), src.lastIndexOf('\n', index), src.lastIndexOf('،', index));
+  let before = src.slice(cut + 1, index);
+  const but = [...before.matchAll(/\b(but|however|lekin|magar)\b/gi)].pop();
+  if (but) before = before.slice(but.index + but[0].length);
+  return before;
+}
+
+function benefactorMatch(src) {
+  for (const re of POST_CLAIMS) {
+    const g = new RegExp(re.source, re.flags.includes('g') ? re.flags : `${re.flags}g`);
+    for (const m of src.matchAll(g)) {
+      const from = Math.max(0, m.index - 250);
+      const win = src.slice(from, m.index + m[0].length + 250);
+      const nearby = win.slice(0, m.index - from) + ' ' + win.slice(m.index - from + m[0].length);
+      if (OFFER_EN.test(win) || OFFER_EN_REVERSE.test(win) || OFFER_UR.some((o) => o.test(win)) || OFFER_EN.test(nearby)) {
+        // "I never claim to work at a court": a disclaimer in the clause before the claim is not a boast.
+        if (DISCLAIM.test(clauseBefore(src, m.index))) continue;
+        return m;
+      }
+    }
+  }
+  for (const re of GOV_JOB) {
+    const g = new RegExp(re.source, re.flags.includes('g') ? re.flags : `${re.flags}g`);
+    for (const m of src.matchAll(g)) if (!DISCLAIM.test(clauseBefore(src, m.index) + m[0])) return m;
+  }
+  return null;
+}
+
+// Admission, scholarship, visa and job sold as one package. Job plus two others, or the first three with a
+// strong "I will arrange" verb. A sentence that says guidance, advice or information is a service description.
+const CATS = {
+  admission: new RegExp(String.raw`\b(?:admissions?|dakhl?a|dakhila|seats?|offer letters?)\b|${UR_ADMISSION}`, 'iu'),
+  scholarship: new RegExp(String.raw`\b(?:scholarships?|wazifa|funding|stipend)\b|${uw('اسکالرشپ|وظیفہ')}`, 'iu'),
+  visa: new RegExp(String.raw`\b(?:visas?|visa)\b|${uw('ویزا|ویزہ|ویزے')}`, 'iu'),
+  job: new RegExp(String.raw`\b(?:jobs?|naukri|employment|work permits?)\b|${uw('نوکری|ملازمت|جاب')}`, 'iu'),
+};
+const BUNDLE_VERB = /\b(?:get|arrange|give|provide|secure|organi[sz]e|dilwa|lagwa|dila|karwa|package|deal|everything|all[- ]in[- ]one|complete)\w*|(?<![؀-ۿ])(?:دلوا|لگوا|کروا|انتظام|پیکج)\w*/iu;
+const BUNDLE_STRONG = /\b(?:arrange|guarantee|dilwa|lagwa|dila|karwa|get you|give you|will get|will give|package|everything|all[- ]in[- ]one)\w*|(?<![؀-ۿ])(?:دلوا|لگوا|کروا|انتظام|گارنٹی|پیکج)\w*/iu;
+const BUNDLE_SERVICE = /\b(?:guidance|advice|advising|advis[eo]rs?|information|support service|workshops?|fairs?|events?|webinars?|seminars?|careers? service|resources?|news|updates|rules|requirements)\b/i;
+function bundleMatch(src) {
+  for (const sm of src.matchAll(/[^.!?۔\n]+/gu)) {
+    const sentence = sm[0];
+    if (BUNDLE_SERVICE.test(sentence) || DISCLAIM.test(sentence)) continue;
+    const has = Object.fromEntries(Object.entries(CATS).map(([k, re]) => [k, re.test(sentence)]));
+    const count = Object.values(has).filter(Boolean).length;
+    const strongTrio = has.admission && has.scholarship && has.visa && BUNDLE_STRONG.test(sentence);
+    if ((has.job && count >= 3 && BUNDLE_VERB.test(sentence)) || strongTrio) return { index: sm.index, 0: sentence.trim() };
+  }
+  return null;
+}
+
+const rx = (src, flags = 'i') => new RegExp(src, flags);
+const JOBW = String.raw`(?:jobs?|employment|naukri)`;
+const RECOVER_FEE = String.raw`(?:fees?|charges?|commission|advance|deposit|up-?front|\d+\s*%|percent|service charge|processing)`;
+
 const RULES = [
   {
     id: 'guarantee', severity: 'high',
@@ -216,6 +318,69 @@ const RULES = [
       /\bscholarship\b.{0,60}\b(release|claim|receive)\b.{0,30}\b(award|amount|funds?)\b/i,
       /\b(processing|release|registration)\s+fee\b.{0,40}\b(release|award|scholarship)\b/i],
   },
+  // ---- Laiba coverage gaps (G4, G14, G16, G5, G9): see the helper block above RULES. ----
+  {
+    id: 'benefactor_official', severity: 'high', test: benefactorMatch,
+  },
+  {
+    id: 'bundle_offer', severity: 'high', test: bundleMatch,
+  },
+  {
+    id: 'job_guarantee', severity: 'high', disclaim: true,
+    patterns: [rx(String.raw`\b(?:guarantee[ds]?|guaranteed|assured|confirmed?|100\s*%)\s+(?:\w+\s+){0,2}${JOBW}\b`),
+      rx(String.raw`\b${JOBW}\s+(?:is\s+|are\s+)?(?:100\s*%\s+)?(?:guarantee[ds]?|guaranteed|assured|pakk[ai]|confirm\w*)\b`),
+      rx(String.raw`\b(?:we|i)\s*(?:will|can|'ll|shall)\s+(?:also\s+)?(?:get|give|arrange|provide|find|offer)\s+(?:you|your\s+\w+|him|her)\s+(?:a\s+|an\s+)?(?:\w+\s+)?(?:job|naukri)\b`),
+      /\b(?:naukri|job)\s+(?:bhi\s+)?(?:dilwa|lagwa|dila|pakk[ai]|confirm)\w*/i, /\bpakk[ai]\s+(?:naukri|job)\b/i, /\b(?:job|naukri)\s+(?:ki\s+)?(?:gu?[ae]?ran?t[ei]e|garantee)\b/i,
+      rx(`${uw('نوکری|ملازمت|جاب')}[^.۔!?]{0,25}(?:گارنٹی|پکی|یقینی|دلوا|لگوا)`, 'u'),
+      rx(`(?:گارنٹی|گارنٹیڈ|پکی|یقینی)[^.۔!?]{0,20}${uw('نوکری|ملازمت|جاب')}`, 'u')],
+  },
+  {
+    // A visit visa is not a work visa; a work permit does not come with a place at a university.
+    id: 'work_route_promise', severity: 'high', disclaim: true,
+    patterns: [/\b(?:visit(?:or)?|tourist|visiting)\s+visa\b[^.!?]{0,60}\b(?:work|working|jobs?|employment|naukri|kaam)\b/i,
+      /\b(?:work|working|jobs?|naukri|kaam)\b[^.!?]{0,40}\b(?:on|with|through|using|par|pe|per|se)\s+(?:a\s+|an\s+)?(?:visit(?:or)?|tourist)\s+visa\b/i,
+      /\bwork\s*permits?\b[^.!?]{0,40}\b(?:with|along with|plus|free|included|together with|ke saath|bhi milega)\b[^.!?]{0,30}\b(?:admission|study|studies|course|offer|dakhla|dakhila|seat)\b/i,
+      /\b(?:admission|study|course|offer|dakhla|dakhila|seat)\b[^.!?]{0,30}\b(?:with|plus|and|free|ke saath)\b[^.!?]{0,15}\b(?:a\s+)?(?:free\s+)?work\s*permits?\b/i, /\bfree work\s*permits?\b/i,
+      rx(`(?:وزٹ|وزیٹ|ٹورسٹ)\\s*ویزا?[^.۔!?]{0,40}${uw('نوکری|کام|جاب|ملازمت')}`, 'u'),
+      rx(`${uw('ورک پرمٹ')}[^.۔!?]{0,40}(?:ساتھ|مفت)[^.۔!?]{0,30}(?:${UR_ADMISSION})`, 'u')],
+  },
+  {
+    // Joining a group to "get" a scholarship or appointment. A real university's group for updates is not this.
+    id: 'group_scholarship', severity: 'high', disclaim: true,
+    unless: /\b(?:updates?|news|alerts?|announcements?|tips|advice|guidance|information|reminders?|help)\b|اپ ڈیٹ|خبر|اطلاع/iu,
+    patterns: [rx(String.raw`\bjoin\b[^.!?]{0,40}\b(?:groups?|channels?|whats\s*app|telegram|page|community)\b[^.!?]{0,60}\b(?:to|for)\s+(?:get|receive|claim|secure|win|obtain|apply|book|confirm|avail)\w*\b[^.!?]{0,40}\b(?:scholarships?|appointments?|slots?|visa|admission|funding|stipend)\b`),
+      rx(String.raw`\b(?:to|for)\s+(?:get|receive|claim|secure|win|obtain|apply|book|confirm|avail)\w*\b[^.!?]{0,40}\b(?:scholarships?|appointments?|slots?|funding|stipend)\b[^.!?]{0,40}\bjoin\b[^.!?]{0,40}\b(?:groups?|channels?|whats\s*app|telegram|page)\b`),
+      /\b(?:group|channel)\s+(?:ko\s+)?join\s+(?:kar\w*)\b[^.!?]{0,60}\b(?:scholarship|appointment|slot|visa|admission)/i,
+      /\b(?:scholarship|appointment|slot|visa)\b[^.!?]{0,60}\b(?:group|channel)\s+(?:ko\s+)?join\b/i,
+      rx(`${uw('گروپ|چینل|واٹس ایپ|ٹیلی گرام')}[^.۔!?]{0,40}(?:جوائن|شامل)[^.۔!?]{0,60}${uw('اسکالرشپ|وظیفہ|اپوائنٹمنٹ|اپائنٹمنٹ|ویزا')}`, 'u'),
+      rx(`${uw('اسکالرشپ|وظیفہ|اپوائنٹمنٹ|اپائنٹمنٹ|ویزا')}[^.۔!?]{0,60}${uw('گروپ|چینل')}[^.۔!?]{0,30}(?:جوائن|شامل)`, 'u')],
+  },
+  {
+    // Money keeps moving for a "last" step: release, clearance, "one last payment" (the escalation in Laiba's case).
+    id: 'escalating_fee', severity: 'high', disclaim: true,
+    patterns: [/\b(?:release|clearance|unlock|unfreez\w*)\s+(?:fees?|charges?|payments?)\b/i,
+      /\b(?:one|just one)\s+(?:last|final|more)\s+(?:payment|fee|charge|transfer|time)\b/i,
+      rx(String.raw`\b(?:last|final)\s+(?:payment|fees?|charges?)\b(?![^.!?]{0,40}\b(?:instal?ments?|portal|tuition)\b)[^.!?]{0,60}\b(?:visa|release[ds]?|clearance|file|scholarship|funds?)\b`),
+      /\b(?:akhri|aakhri|akhiri)\s+(?:payment|fee|baar|charges?|raqam)\b/i, /\b(?:ek aur|aur ek)\s+(?:payment|fee|charge)\b/i,
+      rx(`(?:آخری)\\s+(?:ادائیگی|فیس|چارجز|بار|رقم)|${uw('ریلیز فیس|کلیئرنس چارجز|کلیئرنس فیس')}`, 'u')],
+  },
+  {
+    // Plain "last payment" or "final fee" is also what a real instalment letter says, so it is only a reminder.
+    id: 'escalating_fee_soft', msg: 'escalating_fee', severity: 'medium', disclaim: true, dedupe: true,
+    unless: /\b(?:instal?ments?|portal|tuition|semester|term|date|deadline|deposit|student account)\b/i,
+    patterns: [/\b(?:last|final)\s+(?:payment|fee|charges?)\b/i],
+  },
+  {
+    // Recovery scams target people who already lost money. A real service for victims does not charge a fee.
+    id: 'recovery_scam', severity: 'high', disclaim: true, help: true,
+    patterns: [rx(String.raw`\b(?:recover|retrieve|get back|claw back|trace)\w*\b[^.!?]{0,40}\b(?:money|funds?|payments?|amounts?|rupees|savings|losses|crypto)\b[^.!?]{0,80}\b${RECOVER_FEE}\b`),
+      rx(String.raw`\b${RECOVER_FEE}\b[^.!?]{0,60}\b(?:recover|retrieve|get back)\w*\b[^.!?]{0,30}\b(?:money|funds?|payments?|amounts?|rupees|losses)\b`),
+      /\b(?:fund|scam|money|asset)\s+recovery\s+(?:agent|service|company|expert|specialist|team|lawyer|firm|agency)s?\b/i,
+      /\b(?:paise|paisay|raqam|rupay|funds?|money)\b[^.!?]{0,30}\b(?:wapis|wapas)\b[^.!?]{0,40}\b(?:dilwa|dila|karwa|nikalw)\w*[^.!?]{0,60}\b(?:fee|charges?|commission|percent|%|advance)/i,
+      /\b(?:fee|charges?|commission|percent|%|advance)\b[^.!?]{0,60}\b(?:paise|paisay|raqam|rupay|funds?|money)\b[^.!?]{0,30}\b(?:wapis|wapas)\b/i,
+      rx(`${uw('رقم|پیسے|پیسوں')}[^.۔!?]{0,40}واپس[^.۔!?]{0,40}(?:دلوا|کروا|نکلوا|دلا)[^.۔!?]{0,80}${uw('فیس|چارجز|کمیشن|فیصد|ایڈوانس')}`, 'u'),
+      rx(`${uw('فیس|چارجز|کمیشن|ایڈوانس')}[^.۔!?]{0,60}${uw('رقم|پیسے|پیسوں')}[^.۔!?]{0,30}واپس`, 'u')],
+  },
 ];
 
 // Phrases that try to instruct automated tools; shown so a student understands manipulation.
@@ -232,6 +397,7 @@ function isNegated(src, m) {
 }
 
 function firstMatch(src, rule) {
+  if (rule.test) return rule.test(src);
   for (const re of rule.patterns) {
     const g = new RegExp(re.source, re.flags.includes('g') ? re.flags : `${re.flags}g`);
     for (const m of src.matchAll(g)) {
@@ -247,6 +413,7 @@ function firstMatch(src, rule) {
         const guarded = rule.negateUnless && (rule.negateUnless.test(rule.guardWholeClause ? before : context) || rule.negateUnless.test(after));
         if (rule.negateBefore.test(before) && !guarded) continue;
       }
+      if (rule.disclaim && (DISCLAIM.test(clauseBefore(src, m.index) + m[0]) || URDU_NEG_AFTER.test(src.slice(m.index + m[0].length, m.index + m[0].length + 40)))) continue;
       if (rule.unless && rule.unless.test(src.slice(m.index, m.index + m[0].length + 80))) continue;
       return m;
     }
@@ -271,6 +438,7 @@ export function scanMessage(text) {
   const src = clean(text);
   const flags = [];
   for (const rule of RULES) {
+    if (rule.dedupe && flags.some((f) => f.msg === (rule.msg || rule.id))) continue;
     const m = firstMatch(src, rule);
     if (m) flags.push({ id: rule.id, msg: rule.msg || rule.id, severity: rule.severity, excerpt: excerptAround(src, m.index, m[0].length) });
   }
@@ -288,3 +456,26 @@ function excerptAround(src, index, len) {
   const end = Math.min(src.length, index + len + 30);
   return (start > 0 ? '…' : '') + src.slice(start, end).replace(/\s+/g, ' ').trim() + (end < src.length ? '…' : '');
 }
+
+// English texts and Urdu drafts for the Laiba-gap scanner flags (keys `flag.<id>`). Lane B copies them into i18n.
+// The Urdu is a draft until a native-speaking counsellor has reviewed it (docs/plan/GATES.md).
+export const GAP_FLAG_TEXT = {
+  en: {
+    'flag.benefactor_official': 'Someone says they work in a court, ministry, embassy or government office, or have contacts there, and offers admission, a scholarship, a visa or a job. Real universities and embassies do not sell favours through people they know. Check the offer with the university yourself, using the contact on its own website.',
+    'flag.bundle_offer': 'One person offers admission, a scholarship, a visa and a job together. No agent or private person can arrange all of these. Each one is decided by a different official body. Ask each body yourself.',
+    'flag.job_guarantee': 'Promises a job, often together with study. No one can guarantee a job abroad. A visa for study is not a work contract. Check a job offer with the official employment service, never with the person selling it.',
+    'flag.work_route_promise': 'Suggests you can work on a visit visa, or that a work permit comes with admission. A visit visa does not allow work, and a place at a university is separate from a work permit. This is how people are trapped in illegal work.',
+    'flag.group_scholarship': 'Asks you to join a group or channel to get a scholarship or an appointment. Scholarships and embassy appointments are not given out in chat groups. Use only the official website of the scholarship or the embassy.',
+    'flag.escalating_fee': 'Asks for a "last", "release" or "clearance" payment. A new fee after you have paid is how scams grow. Stop, and check with the university or the official body yourself before you pay again.',
+    'flag.recovery_scam': 'Offers to get your lost money back for a fee. This is a second scam aimed at people who have already lost money. Do not pay. Report to the FIA (the Federal Investigation Agency) and your bank, and read the guide for people who have already paid.',
+  },
+  ur: {
+    'flag.benefactor_official': 'کوئی کہتا ہے کہ وہ عدالت، وزارت، سفارت خانے یا کسی سرکاری دفتر میں کام کرتا ہے یا وہاں اس کے جاننے والے ہیں، اور داخلے، اسکالرشپ، ویزے یا نوکری کی پیشکش کرتا ہے۔ اصلی یونیورسٹیاں اور سفارت خانے جان پہچان کے ذریعے مہربانیاں نہیں بیچتے۔ پیشکش کی تصدیق یونیورسٹی کی اپنی ویب سائٹ پر دیے گئے رابطے سے خود کریں۔',
+    'flag.bundle_offer': 'ایک ہی شخص داخلہ، اسکالرشپ، ویزا اور نوکری سب ایک ساتھ دینے کی بات کر رہا ہے۔ کوئی ایجنٹ یا عام شخص یہ سب طے نہیں کر سکتا۔ ہر چیز کا فیصلہ الگ سرکاری ادارہ کرتا ہے۔ ہر ادارے سے خود پوچھیں۔',
+    'flag.job_guarantee': 'نوکری کا وعدہ کیا گیا ہے، اکثر پڑھائی کے ساتھ۔ بیرونِ ملک نوکری کی گارنٹی کوئی نہیں دے سکتا۔ تعلیمی ویزا نوکری کا معاہدہ نہیں ہوتا۔ نوکری کی پیشکش کی تصدیق سرکاری روزگار کے ادارے سے کریں، بیچنے والے سے نہیں۔',
+    'flag.work_route_promise': 'کہا جا رہا ہے کہ وزٹ ویزے پر کام ہو سکتا ہے، یا داخلے کے ساتھ ورک پرمٹ مل جائے گا۔ وزٹ ویزا کام کی اجازت نہیں دیتا، اور یونیورسٹی میں جگہ ورک پرمٹ سے الگ چیز ہے۔ لوگ اسی طرح غیر قانونی کام کے جال میں پھنستے ہیں۔',
+    'flag.group_scholarship': 'اسکالرشپ یا اپائنٹمنٹ لینے کے لیے کسی گروپ یا چینل میں شامل ہونے کو کہا گیا ہے۔ اسکالرشپ اور سفارت خانے کی اپائنٹمنٹ چیٹ گروپوں میں نہیں بانٹی جاتیں۔ صرف اسکالرشپ یا سفارت خانے کی سرکاری ویب سائٹ استعمال کریں۔',
+    'flag.escalating_fee': '"آخری"، "ریلیز" یا "کلیئرنس" ادائیگی مانگی جا رہی ہے۔ رقم دینے کے بعد نئی فیس آ جانا ہی فراڈ کے بڑھنے کا طریقہ ہے۔ دوبارہ ادائیگی سے پہلے رکیں اور یونیورسٹی یا متعلقہ سرکاری ادارے سے خود پوچھیں۔',
+    'flag.recovery_scam': 'فیس کے بدلے آپ کی کھوئی ہوئی رقم واپس دلانے کی پیشکش کی گئی ہے۔ یہ ان لوگوں کو نشانہ بنانے والا دوسرا فراڈ ہے جو پہلے ہی رقم کھو چکے ہیں۔ پیسے نہ دیں۔ ایف آئی اے اور اپنے بینک کو اطلاع دیں، اور رقم دے چکے لوگوں کے لیے گائیڈ پڑھیں۔',
+  },
+};
