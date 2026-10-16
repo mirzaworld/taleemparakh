@@ -95,7 +95,9 @@ function showPanel(name, { focus = false, push = false } = {}) {
   }
   if (push) {
     const u = new URL(location.href);
-    u.searchParams.set('tab', name);
+    // The story is the home page: its address has no ?tab=.
+    if (name === 'story') u.searchParams.delete('tab'); else u.searchParams.set('tab', name);
+    u.hash = '';
     history.pushState({ panel: name }, '', u);
   }
   if (name === 'news') loadNews();
