@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mirzaworld.github.io/taleemparakh/sitemap.xml
+Sitemap: https://taleemparakh.org/sitemap.xml

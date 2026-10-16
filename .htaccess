@@ -1,0 +1,43 @@
+# TaleemParakh on taleemparakh.org (cPanel, Apache or LiteSpeed). Applies ONLY to this folder (REQUEST-LOG R20).
+# Mirrors public/_headers. When the student backend is switched on, connect-src must also name the backend origin.
+Options -Indexes
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # Hidden files are never served, except the certificate challenge folder.
+  RewriteRule "(^|/)\.(?!well-known/)" - [F]
+  # HTTPS redirect: switched on only once a certificate for taleemparakh.org is installed.
+  # TP_HTTPS_START
+  # RewriteCond %{REQUEST_URI} !^/\.well-known/acme-challenge/
+  # RewriteCond %{HTTPS} !=on
+  # RewriteRule ^(.*)$ https://taleemparakh.org/$1 [R=301,L]
+  # TP_HTTPS_END
+  RewriteCond %{HTTP_HOST} ^www\.taleemparakh\.org$ [NC]
+  RewriteRule ^(.*)$ %{REQUEST_SCHEME}://taleemparakh.org/$1 [R=301,L]
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "no-referrer"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+  Header always set Cross-Origin-Opener-Policy "same-origin"
+  Header always set X-Frame-Options "DENY"
+  # Pages, the service worker and the version stamp are always re-checked, so updates reach students quickly.
+  <FilesMatch "\.(html|json|webmanifest|txt|xml)$|^sw\.js$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+  <FilesMatch "\.(css|js|png|svg|woff2)$">
+    Header set Cache-Control "public, max-age=3600"
+  </FilesMatch>
+  <FilesMatch "^sw\.js$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_mime.c>
+  AddType application/manifest+json .webmanifest
+  AddType font/woff2 .woff2
+</IfModule>
