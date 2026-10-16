@@ -747,7 +747,8 @@ html:not(.js) .spot-meter, html:not(.js) .spot-count, html:not(.js) .spot-action
 .check-card:hover .cc-go .i { transform: translateX(4px); }
 [dir="rtl"] .check-card:hover .cc-go .i { transform: scaleX(-1) translateX(4px); }
 .more-cards { list-style: none; padding: 0; margin: var(--sp-4) 0; display: grid; gap: var(--sp-3); }
-@media (min-width: 720px) { .more-cards { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 720px) { .more-cards { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1100px) { .more-cards { grid-template-columns: repeat(4, 1fr); } }
 .more-card { display: flex; gap: var(--sp-3); align-items: flex-start; height: 100%; padding: var(--sp-4); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
   color: var(--text); text-decoration: none; box-shadow: var(--depth-1); transition: transform 200ms var(--ease-out), border-color var(--speed); }
 .more-card:hover { transform: translateY(-2px); border-color: var(--brand); }
@@ -799,3 +800,77 @@ html:not(.js) .spot-meter, html:not(.js) .spot-count, html:not(.js) .spot-action
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }
 @media print { .top { position: static; } .tabbar, .lang, .skip, .top-actions { display: none; } body.app { display: block; padding: 0; } }
 .prose a, .helpbox a, .about a, main p a { overflow-wrap: anywhere; }
+
+/* ---------- Never-do box, share kit, printable pages, offerings (Lane B, 2026-10-16) ----------
+   The never-do box (Laiba audit G13) is the same on Home, Help and About. It uses the brand colour, not a status colour:
+   it is a promise about us, not a result. Printable pages: checklist for parents and the 5 checks poster. On paper,
+   backgrounds are dropped (many printers and browsers skip them), so every part keeps a border and black text. */
+:root { --x: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.25' stroke-linecap='round'%3E%3Cpath d='M6.5 6.5l11 11M17.5 6.5l-11 11'/%3E%3C/svg%3E"); }
+.never { background: var(--surface); border: 1px solid var(--line-strong); border-inline-start: 5px solid var(--brand); border-radius: var(--radius); padding: var(--sp-4) var(--sp-4) var(--sp-3); margin: var(--sp-5) 0; box-shadow: var(--depth-1); }
+.never-head { display: flex; align-items: center; gap: var(--sp-3); }
+.never-head > .i { color: var(--brand); }
+.never-head h2 { margin: 0; font-size: var(--fs-lead); }
+.never > p { max-width: var(--measure); }
+.never-list { list-style: none; padding: 0; margin: var(--sp-3) 0; display: grid; gap: var(--sp-2); }
+.never-list li { position: relative; padding-inline-start: 34px; max-width: var(--measure); font-weight: 600; }
+.never-list li::before { content: ""; position: absolute; inset-inline-start: 0; top: .2em; width: 24px; height: 24px; background: var(--brand); -webkit-mask: var(--x) center / contain no-repeat; mask: var(--x) center / contain no-repeat; }
+html[lang="ur"] .never-list li::before { top: .55em; }
+.never-site { color: var(--muted); font-size: var(--fs-sm); }
+.story .never { margin-top: var(--sp-6); }
+
+.share-kit { margin-top: var(--sp-6); }
+.share-actions { margin: var(--sp-3) 0; }
+.qr { margin: var(--sp-4) 0; display: flex; align-items: center; gap: var(--sp-4); flex-wrap: wrap; }
+.qr img { display: block; background: #fff; border: 1px solid var(--line-strong); border-radius: var(--radius-sm); }
+.qr figcaption { color: var(--muted); font-size: var(--fs-sm); max-width: 32ch; }
+
+.print-row { margin: var(--sp-4) 0; display: flex; gap: var(--sp-3); align-items: center; flex-wrap: wrap; }
+.print-note { color: var(--muted); font-size: var(--fs-sm); margin: 0; }
+.checklist { list-style: none; padding: 0; margin: var(--sp-2) 0 var(--sp-4); display: grid; gap: var(--sp-3); }
+.checklist li { position: relative; padding-inline-start: 40px; max-width: var(--measure); break-inside: avoid; }
+.checklist li::before { content: ""; position: absolute; inset-inline-start: 0; top: .12em; width: 24px; height: 24px; border: 2px solid var(--brand); border-radius: 6px; background: var(--surface); }
+html[lang="ur"] .checklist li::before { top: .5em; }
+.checklist-group { break-inside: avoid-page; }
+.printable .guide h2 { font-size: var(--fs-lead); }
+.print-sources { font-size: var(--fs-sm); }
+
+.poster { max-width: 860px; }
+.poster-head { background: var(--brand); color: var(--brand-ink); border-radius: 20px; padding: clamp(20px, 4vw, 40px); margin: 0 0 var(--sp-4); }
+.poster-head h1 { color: var(--brand-ink); margin: 0; font-size: clamp(1.7rem, 1.1rem + 2.8vw, 3rem); line-height: 1.12; letter-spacing: -.01em; }
+html[lang="ur"] .poster-head h1 { line-height: 1.9; letter-spacing: 0; }
+.poster-head p { color: var(--brand-ink); margin: var(--sp-2) 0 0; font-size: var(--fs-lead); }
+.poster-list { list-style: none; counter-reset: pc; padding: 0; margin: 0 0 var(--sp-4); display: grid; gap: var(--sp-3); }
+.poster-list li { counter-increment: pc; display: grid; grid-template-columns: 52px 1fr; gap: var(--sp-3); align-items: start; background: var(--surface); border: 1px solid var(--line-strong); border-radius: var(--radius); padding: var(--sp-3) var(--sp-4); break-inside: avoid; }
+.poster-list li::before { content: counter(pc); width: 48px; height: 48px; border-radius: 50%; background: var(--brand); color: var(--brand-ink); display: grid; place-items: center; font: 700 1.5rem/1 var(--font-display); }
+[lang="ur"] .poster-list li::before { content: counter(pc, persian); font-family: var(--font-ur); }
+.poster-list b { display: block; font-size: var(--fs-lead); margin-bottom: 2px; }
+.poster-list p { margin: 0; max-width: 60ch; }
+.poster-foot { display: flex; gap: var(--sp-4); align-items: center; border: 2px solid var(--brand); border-radius: var(--radius); padding: var(--sp-3) var(--sp-4); break-inside: avoid; }
+.poster-foot img { flex: none; display: block; background: #fff; }
+.poster-foot p { margin: var(--sp-1) 0; }
+.poster-foot .poster-url { font-size: clamp(1.25rem, 1rem + 1.4vw, 1.9rem); font-weight: 700; color: var(--brand); direction: ltr; unicode-bidi: isolate; }
+
+.offer-list { list-style: none; padding: 0; margin: var(--sp-3) 0; display: grid; gap: var(--sp-2); }
+.offer-list li { display: flex; gap: var(--sp-3); align-items: center; justify-content: space-between; flex-wrap: wrap; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--sp-3) var(--sp-4); }
+.offer-list li > span:first-child { font-weight: 600; }
+.money-table td:last-child, .money-table th:last-child { text-align: end; }
+
+@media print {
+  @page { size: A4; margin: 12mm; }
+  html, body, body.app { background: #fff !important; color: #000; }
+  .printable .top, .printable .tabbar, .printable .breadcrumb, .printable .print-row, .printable .foot, .printable .skip, .printable .update-bar, .printable .no-print { display: none !important; }
+  .printable main, .printable .app > main { padding: 0; max-width: none; }
+  .printable .guide, .printable .poster { max-width: none; }
+  .printable a { color: inherit; text-decoration: none; }
+  .printable .guide .answer { box-shadow: none; border-color: #000; }
+  .poster-head { background: none; color: #000; border: 3px solid #000; border-radius: 12px; }
+  .poster-head h1, .poster-head p { color: #000; }
+  .poster-list li { border: 2px solid #000; box-shadow: none; }
+  .poster-list li::before { background: none; color: #000; border: 2px solid #000; }
+  .poster-foot { border-color: #000; }
+  .poster-foot .poster-url { color: #000; }
+  .checklist li::before { border-color: #000; }
+  .printable .helpbox { box-shadow: none; border-color: #000; }
+  .printable h1 { font-size: 1.6rem; }
+  .printable { font-size: 11.5pt; }
+}

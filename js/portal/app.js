@@ -71,7 +71,8 @@ function helplines() {
   const P = PUBLIC[state.lang] || PUBLIC.en;
   const rows = [['help.emergency', 'phone', true], ['help.mental', 'heart'], ['help.cyber', 'shield'], ['help.sim', 'phone'], ['help.bank', 'money'], ['help.abroad', 'globe'], ['help.rights', 'scales']];
   return el('section', { class: 'helpbox', 'aria-labelledby': 'lines-h' }, el('h2', { id: 'lines-h' }, icon('phone'), t('helplines')),
-    el('ul', { class: 'lines' }, rows.filter(([k]) => P[k]).map(([k, ic, urgent]) => el('li', { class: urgent ? 'urgent' : null }, icon(ic), el('span', {}, P[k])))));
+    el('ul', { class: 'lines' }, rows.filter(([k]) => P[k]).map(([k, ic, urgent]) => el('li', { class: urgent ? 'urgent' : null }, icon(ic), el('span', {}, P[k])))),
+    P['help.checked'] ? el('p', { class: 'muted small' }, P['help.checked']) : null);
 }
 function offlineScreen() {
   render(head(t('offlineH')), el('div', { class: 'notice' }, icon('offline'), el('p', {}, t('offline'))), helplines());
@@ -663,7 +664,7 @@ const NEEDS_NET = new Set(['home', 'new', 'permission', 'request', 'answer', 'ac
 function launchNotice() {
   const q = state.lang === 'ur' ? '&lang=ur' : '';
   render(head(t('launchH')),
-    el('div', { class: 'notice' }, icon('done'), el('p', {}, t('launchText'))),
+    el('div', { class: 'notice' }, icon('info'), el('p', {}, t('launchText'))),
     el('div', { class: 'actions' }, linkBtn(t('launchCheck'), `../?tab=check${q}`, 'btn primary', 'check'), linkBtn(t('launchNews'), `../?tab=news${q}`, 'btn', 'news')),
     helplines());
 }

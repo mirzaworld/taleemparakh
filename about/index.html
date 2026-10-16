@@ -102,7 +102,7 @@
       <p><span data-i18n="about.reach">Contact and corrections: email us. Please do not send personal documents or anyone's private details by email.</span> <a href="mailto:contact@taleemparakh.org" dir="ltr" data-i18n="about.reachLink">contact@taleemparakh.org</a></p>
       <h2 data-i18n="about.doH">What this site does today</h2>
       <ul>
-        <li data-i18n="about.do1">Searches official public registers (UK student sponsors, Australian CRICOS), with the source edition date shown on every result. A listing means only what the register says it means.</li>
+        <li data-i18n="about.do1">Searches official public registers (UK student sponsors, and the Australian register for overseas students, CRICOS), with the source edition date shown on every result. A listing means only what the register says it means.</li>
         <li data-i18n="about.do2">Checks email addresses and links for lookalike and free-email tricks.</li>
         <li data-i18n="about.do3">Scans agent messages for common scam patterns.</li>
         <li data-i18n="about.do4">Helps you think through a payment before you make it.</li>
@@ -114,12 +114,18 @@
         <li data-i18n="about.not3">It does not accuse any person or agent. A warning sign is a reason to check, not proof of fraud.</li>
         <li data-i18n="about.not4">It has no human reviewers yet and no crisis service.</li>
       </ul>
-      <h2 data-i18n="about.privH">Privacy</h2>
-      <p data-i18n="about.priv">Nothing you type leaves your device. The only network requests go to this same site: the app, the guide pages (a few are saved for offline use when you first visit) and the public register file. The site is hosted on GitHub Pages, which records visitor IP addresses in its server logs, as any web host does. There are no cookies and no analytics. Your language and last tab are remembered in your browser's local storage, and the site saves a copy of itself on your device so it can work offline. Links to official websites open those sites, which have their own rules.</p>
-      <h2 data-i18n="about.methH">Method and sources</h2>
-      <p data-i18n="about.meth">The checks are fixed rules, not artificial intelligence: the same input always gives the same result. Every result shows its source and date. Register files come only from the documented open-data endpoints of the UK government (gov.uk content API) and the Australian government (data.gov.au). Each edition is recorded with its address, SHA-256 fingerprint and fetch time, and a very large change stops the update from being published.</p>
-      <p class="muted" data-i18n="about.licence">UK data: Open Government Licence v3.0. Australian data: CC BY 2.5 AU, Department of Education.</p>
-    
+      <section class="never" aria-labelledby="never-h-about">
+        <div class="never-head"><svg class="i" data-icon="shield" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.5 5 6v5.5c0 4.2 2.9 7.6 7 9 4.1-1.4 7-4.8 7-9V6z"/></svg><h2 id="never-h-about" data-i18n="never.h">What TaleemParakh will never do</h2></div>
+        <p data-i18n="never.intro">If a message says it is from TaleemParakh and does any of these things, it is not from us.</p>
+        <ul class="never-list">
+          <li data-i18n="never.1">Message you first.</li>
+          <li data-i18n="never.2">Ask you for money.</li>
+          <li data-i18n="never.3">Ask for your documents on WhatsApp.</li>
+          <li data-i18n="never.4">Promise you an admission, a visa or any other result.</li>
+          <li data-i18n="never.5">Charge you for any check. Every check is free.</li>
+        </ul>
+        <p class="never-site" data-i18n="never.site">Our website is taleemparakh.org. If you are not sure, type the address yourself.</p>
+      
       <section class="helpbox" id="help-list">
         <h2>Need help now?</h2>
         <p>TaleemParakh has no human reviewers yet and no crisis service. These are public services you can contact yourself. Please also talk to someone you trust today.</p>
@@ -141,5 +147,6 @@
     <p><a href="../about/">Who runs TaleemParakh, our method and how to contact us</a></p>
     <p class="dedication"><span lang="en">In memory of Laiba</span><span lang="ur">لائبہ کی یاد میں</span></p>
   </footer>
+  <script type="module" src="../js/ui/share-page.js"></script>
 </body>
 </html>

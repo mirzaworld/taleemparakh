@@ -6,7 +6,7 @@
 // Update flow: a new worker waits instead of taking over mid-use. It tells open pages (message TP_UPDATE_READY),
 // and the page sends TP_SKIP_WAITING when the student taps "Update now", then reloads on controllerchange.
 // HTML is only ever returned for a navigation, never in place of a stylesheet or script (finding B-15).
-const VERSION = 'tp-4e3d8e609980';
+const VERSION = 'tp-33caf7131546';
 const SHELL = [
   './', 'index.html', 'offline.html', 'styles.css', 'manifest.webmanifest', 'icons/icon.svg', 'icons/mark.svg', 'fonts/lora-latin.woff2', 'fonts/nastaliq-urdu.woff2', 'icons/icon-192.png', 'icons/favicon-32.png',
   'js/app.js', 'js/i18n.js', 'js/core/normalize.js', 'js/core/registry.js',
@@ -14,9 +14,9 @@ const SHELL = [
   'guides/', 'guides/already-paid-what-to-do/', 'guides/blackmail-images-help/', 'data/registry.json',
 ];
 // Saved when present; a page that does not exist yet must not stop the install.
-const OPTIONAL = ['portal/', 'about/', 'news/', 'guides/save-to-home-screen/', 'data/news.json', 'data/news-meta.json', 'data/protect-notes.json'];
+const OPTIONAL = ['portal/', 'about/', 'news/', 'guides/save-to-home-screen/', 'checklist-for-parents/', 'js/ui/boot.js', 'js/ui/story.js', 'data/news.json', 'data/news-meta.json', 'data/protect-notes.json'];
 const DATA = ['data/registry.json', 'data/news.json', 'data/news-meta.json', 'data/protect-notes.json'];
-const PAGES = ['offline.html', 'index.html', 'about/', 'guides/', 'ur/', 'news/', 'portal/', 'donate/', 'impact/', 'schools/'];
+const PAGES = ['offline.html', 'index.html', 'about/', 'guides/', 'ur/', 'news/', 'portal/', 'donate/', 'impact/', 'schools/', 'checklist-for-parents/', '5-checks-poster/', 'work-with-us/', 'transparency/'];
 const ASSETS = /^(styles\.css|manifest\.webmanifest|js\/(app\.js|i18n\.js|outreach\.js|core\/|lib\/|ui\/|portal\/)|fonts\/|icons\/|img\/)/;
 const NEVER = /\/(rest|auth|functions|storage|realtime)\//;
 

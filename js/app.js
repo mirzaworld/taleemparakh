@@ -5,6 +5,7 @@ import { buildIndex, searchInstitutions, officialDomains } from './core/registry
 import { checkDomain } from './core/domain-check.js';
 import { scanMessage } from './core/red-flags.js';
 import { checkPayment, nameVariants } from './core/payment-check.js';
+import { mountShare } from './ui/share.js';
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
@@ -64,6 +65,10 @@ function applyLanguage() {
   for (const n of $$('[data-i18n]')) n.textContent = t(n.dataset.i18n);
   for (const n of $$('[data-i18n-placeholder]')) n.placeholder = t(n.dataset.i18nPlaceholder);
   for (const n of $$('[data-i18n-aria-label]')) n.setAttribute('aria-label', t(n.dataset.i18nAriaLabel));
+  for (const n of $$('[data-i18n-alt]')) n.setAttribute('alt', t(n.dataset.i18nAlt));
+  // Links to pages that exist in both languages: the Urdu page when the app is in Urdu.
+  for (const n of $$('[data-href-en]')) n.setAttribute('href', state.lang === 'ur' ? n.dataset.hrefUr : n.dataset.hrefEn);
+  mountShare($('#share-actions'), t);
   for (const n of $$('[data-lang]')) n.hidden = n.dataset.lang !== state.lang;
   for (const n of $$('.ur-draft')) n.hidden = state.lang !== 'ur';
   renderFooter();

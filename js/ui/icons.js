@@ -62,6 +62,8 @@ export const ICONS = Object.freeze({
   menu: [['path', { d: 'M4.5 7h15M4.5 12h15M4.5 17h15' }]],
   offline: [['path', { d: 'M4 9a12 12 0 0 1 4.3-2.5M12 6.2a12 12 0 0 1 8 2.8M7 12.3a7.5 7.5 0 0 1 3.4-1.7M14.7 11a7.5 7.5 0 0 1 2.3 1.3M10 15.6a3 3 0 0 1 4 0' }], ['path', { d: 'm4 4 16 16' }], ['circle', { cx: 12, cy: 18.5, r: 0.9, fill: 'currentColor', stroke: 'none' }]],
   install: [['rect', { x: 6.5, y: 2.5, width: 11, height: 19, rx: 2 }], ['path', { d: 'M12 7v7M9.5 11.5 12 14l2.5-2.5M10.5 18.5h3' }]],
+  share: [['circle', { cx: 18, cy: 5.5, r: 2.5 }], ['circle', { cx: 6, cy: 12, r: 2.5 }], ['circle', { cx: 18, cy: 18.5, r: 2.5 }], ['path', { d: 'M8.2 10.8 15.8 6.7M8.2 13.2l7.6 4.1' }]],
+  print: [['path', { d: 'M7 9V4.5h10V9' }], ['path', { d: 'M7 17.5H5a1 1 0 0 1-1-1V10a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v6.5a1 1 0 0 1-1 1h-2' }], ['rect', { x: 7, y: 14, width: 10, height: 6, rx: 1 }]],
   signout: [['path', { d: 'M10 4.5H6a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1h4' }], ['path', { d: 'M15 8l4 4-4 4M19 12H9.5' }]],
 });
 
