@@ -1,1 +1,27 @@
-[]
+[
+  {
+    "id": "6a5b2cbd3c251908",
+    "title": "Rs 2.75 mln Italy work visa fraud: FIA puts suspect behind bars",
+    "outlet": "Associated Press of Pakistan (APP)",
+    "url": "https://www.app.com.pk/national/rs-2-75-mln-italy-work-visa-fraud-fia-puts-suspect-behind-bars",
+    "published_at": "2026-10-08T11:45:01.000Z",
+    "lang": "en",
+    "tags": [
+      "visa_scam"
+    ],
+    "protect_note_id": null
+  },
+  {
+    "id": "3959988bd41dd334",
+    "title": "HEC cautions citizens against fraudsters using its name",
+    "outlet": "Associated Press of Pakistan (APP)",
+    "url": "https://www.app.com.pk/domestic/hec-cautions-citizens-against-fraudsters-using-its-name",
+    "published_at": "2026-10-03T09:57:10.000Z",
+    "lang": "en",
+    "tags": [
+      "impersonation_call",
+      "degree_mill"
+    ],
+    "protect_note_id": null
+  }
+]
