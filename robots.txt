@@ -1,0 +1,5 @@
+# Search engines and AI answer engines are welcome: the guides exist to be found and quoted.
+User-agent: *
+Allow: /
+
+Sitemap: https://mirzaworld.github.io/taleemparakh/sitemap.xml

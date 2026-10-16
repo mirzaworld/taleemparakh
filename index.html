@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <meta name="referrer" content="no-referrer">
+  <meta name="description" content="Free, private checks for Pakistani students before trusting an education agent or paying a fee: official UK and Australian registers, scam messages and payments.">
+  <meta name="theme-color" content="#2f4b40">
+  <title>TaleemParakh: free scam checks for students applying abroad</title>
+  <link rel="canonical" href="https://mirzaworld.github.io/taleemparakh/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="TaleemParakh">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:title" content="TaleemParakh: free scam checks for students applying abroad">
+  <meta property="og:description" content="Check a university, an email, an agent's message or a payment request against official sources before you trust or pay anyone. Free, private, English and Urdu.">
+  <meta property="og:url" content="https://mirzaworld.github.io/taleemparakh/">
+  <meta property="og:image" content="https://mirzaworld.github.io/taleemparakh/img/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"TaleemParakh","alternateName":"تعلیم پرکھ","url":"https://mirzaworld.github.io/taleemparakh/","applicationCategory":"EducationalApplication","operatingSystem":"Any (web browser)","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"PKR"},"description":"Free, private checks for Pakistani students applying abroad: official institution registers, email and link lookalike check, agent message scam scanner and payment check. Nothing typed leaves the device."}</script>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" sizes="180x180">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body class="app">
+  <a class="skip" href="#main" data-i18n="skip">Skip to content</a>
+  <header class="top">
+    <div class="top-row">
+      <a class="brand" href="./">
+        <img class="mark" src="icons/mark.svg" alt="" width="40" height="30">
+        <div>
+          <p class="name"><span class="wm wm-en" lang="en"><b>Taleem</b> Parakh</span><span class="wm wm-ur" lang="ur">تعلیم پرکھ</span></p>
+          <p class="tagline" data-i18n="app.tagline">Free, private checks before you trust an agent or pay a fee.</p>
+        </div>
+      </a>
+      <div class="top-actions">
+        <button type="button" id="lang" class="lang" data-i18n="lang.toggle">اردو</button>
+        <a class="top-btn" href="portal/#/account"><svg class="i" data-icon="user" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="8.5" r="3.5"/><path d="M5 20c.8-3.6 3.6-5.5 7-5.5s6.2 1.9 7 5.5"/></svg><span class="lbl" data-i18n="nav.account">Account</span></a>
+      </div>
+    </div>
+  </header>
+  <nav class="tabbar" aria-label="Main" data-i18n-aria-label="nav.main">
+    <ul>
+      <li><a href="portal/#/home" data-nav="home"><svg class="i" data-icon="home" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 10.5 12 4l8 6.5"/><path d="M6 9.2V20h4.5v-5.5h3V20H18V9.2"/></svg><span data-i18n="nav.home">Home</span></a></li>
+      <li><a href="?tab=check" data-nav="check" aria-current="page"><svg class="i" data-icon="check" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 5 5"/><path d="M8 10.5h5"/></svg><span data-i18n="nav.check">Check</span></a></li>
+      <li><a href="?tab=news" data-nav="news"><svg class="i" data-icon="news" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 5h11v14H6.5A1.5 1.5 0 0 1 5 17.5z"/><path d="M16 9h3v8.5a1.5 1.5 0 0 1-3 0"/><path d="M8 8.5h5M8 12h5M8 15.5h3"/></svg><span data-i18n="nav.news">News</span></a></li>
+      <li><a href="?tab=help" data-nav="help"><svg class="i" data-icon="help" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.25"/><circle cx="12" cy="12" r="3.5"/><path d="m6.2 6.2 3.3 3.3M14.5 14.5l3.3 3.3M17.8 6.2l-3.3 3.3M9.5 14.5l-3.3 3.3"/></svg><span data-i18n="nav.help">Help</span></a></li>
+    </ul>
+  </nav>
+
+  <main id="main">
+    <p class="ur-draft notice" data-i18n="lang.urDraft" lang="ur" hidden>This Urdu text is a translation that is still under review by a native-speaking counsellor. If anything is unclear, please use the English text.</p>
+    <p id="data-stale" class="warn" role="status" hidden></p>
+
+    <section id="panel-check" class="panel" data-panel="check" aria-labelledby="check-h">
+      <div class="page-head">
+        <h1 id="check-h" tabindex="-1" data-i18n="check.title">Check before you trust or pay</h1>
+        <p class="lead" data-i18n="check.lead">Choose what you want to check. These checks run on your phone.</p>
+      </div>
+      <div class="notice"><svg class="i" data-icon="lock" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="5" y="10.5" width="14" height="9.5" rx="1.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg><p><span data-i18n="banner.private">Nothing you type in these free checks leaves your phone. No tracking.</span> <strong data-i18n="banner.limits">These checks can warn you about danger. They can never confirm that you were admitted.</strong></p></div>
+      <div class="seg" role="tablist" aria-label="Checks" data-i18n-aria-label="nav.checks">
+        <button type="button" role="tab" data-tab="institution"><svg class="i" data-icon="building" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 9.5 12 5l8.5 4.5"/><path d="M5.5 10v7M9.8 10v7M14.2 10v7M18.5 10v7"/><path d="M3.5 19.5h17"/></svg><span data-i18n="nav.institution">University</span></button>
+        <button type="button" role="tab" data-tab="contact"><svg class="i" data-icon="mail" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3.5" y="6" width="17" height="12" rx="1.5"/><path d="m4 7 8 6 8-6"/></svg><span data-i18n="nav.contact">Email or link</span></button>
+        <button type="button" role="tab" data-tab="message"><svg class="i" data-icon="chat" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 5.5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-8l-4 3v-3H5a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1z"/><path d="M8 10h8M8 13h5"/></svg><span data-i18n="nav.message">Agent message</span></button>
+        <button type="button" role="tab" data-tab="pay"><svg class="i" data-icon="money" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3.5" y="6.5" width="17" height="11" rx="1.5"/><circle cx="12" cy="12" r="2.5"/><path d="M6.5 9.5v5M17.5 9.5v5"/></svg><span data-i18n="nav.pay">Before you pay</span></button>
+      </div>
+      <section id="tab-institution" role="tabpanel" class="tool">
+        <h2 data-i18n="inst.title">Is this institution on an official register?</h2>
+        <p class="help" data-i18n="inst.help">Search the UK student sponsor register and the Australian CRICOS register. For the USA we link to the official school search. For Pakistan we link to Higher Education Commission (HEC) guidance on foreign degrees, which is not a list.</p>
+        <form id="inst-form" class="field" autocomplete="off">
+          <label for="inst-q" data-i18n="inst.label">Institution name</label>
+          <input id="inst-q" type="search" data-i18n-placeholder="inst.placeholder" maxlength="120" spellcheck="false" placeholder="For example: University of Manchester">
+        </form>
+        <p id="inst-status" class="muted" aria-live="polite"></p>
+        <ol id="inst-results" class="results"></ol>
+        <details class="other">
+          <summary data-i18n="inst.other">Other official searches</summary>
+          <ul>
+            <li><a href="https://studyinthestates.dhs.gov/school-search" rel="noopener noreferrer" target="_blank" data-i18n="other.sevp">USA: Student and Exchange Visitor Program (SEVP) school search (F-1 and M-1 student visas)</a></li>
+            <li><a href="https://www.hec.gov.pk/english/services/students/DES/Pages/Procedure/Foreign-HEIs.aspx" rel="noopener noreferrer" target="_blank" data-i18n="other.hec">Pakistan: Higher Education Commission (HEC) guidance on degrees from foreign institutions (not a list; may not open outside Pakistan)</a></li>
+            <li><a href="https://www.whed.net/" rel="noopener noreferrer" target="_blank" data-i18n="other.whed">World Higher Education Database (WHED)</a></li>
+            <li><a href="https://cricos.education.gov.au/" rel="noopener noreferrer" target="_blank" data-i18n="other.cricos">Australia: CRICOS full search (courses)</a></li>
+            <li><a href="https://www.gov.uk/government/publications/register-of-licensed-sponsors-students" rel="noopener noreferrer" target="_blank" data-i18n="other.ukvi">UK: full student sponsor register</a></li>
+            <li><a href="https://www.britishcouncil.org/education/agents-counsellors/database" rel="noopener noreferrer" target="_blank" data-i18n="other.bc">British Council: trained agent/counsellor database (training is not authorisation)</a></li>
+          </ul>
+        </details>
+      </section>
+      <section id="tab-contact" role="tabpanel" class="tool" hidden>
+        <h2 data-i18n="contact.title">Did this email or link really come from the institution?</h2>
+        <p class="help" data-i18n="contact.help">Paste the sender's email address or the link you were sent. We compare it with the website listed on the official register and look for common tricks.</p>
+        <p class="selected" id="contact-inst"></p>
+        <button type="button" id="clear-inst" class="secondary" data-i18n="contact.clearInst" hidden>Clear the selected institution</button>
+        <form id="contact-form" class="field" autocomplete="off">
+          <label for="contact-q" data-i18n="contact.label">Email address or link</label>
+          <div class="row">
+            <input id="contact-q" type="text" inputmode="email" data-i18n-placeholder="contact.placeholder" maxlength="300" spellcheck="false" dir="ltr" placeholder="For example: offers@university-admission.com">
+            <button type="submit" class="primary" data-i18n="check">Check</button>
+          </div>
+        </form>
+        <div id="contact-result" aria-live="polite"></div>
+      </section>
+      <section id="tab-message" role="tabpanel" class="tool" hidden>
+        <h2 data-i18n="msg.title">Check a message from an agent</h2>
+        <p class="help" data-i18n="msg.help">Paste a WhatsApp, SMS or email message. We look for common scam patterns. The text never leaves your phone.</p>
+        <form id="msg-form" class="field" autocomplete="off">
+          <label for="msg-q" data-i18n="msg.label">Message text</label>
+          <textarea id="msg-q" rows="7" data-i18n-placeholder="msg.placeholder" maxlength="20000" placeholder="Paste the message here…"></textarea>
+          <div class="row end">
+            <button type="button" id="msg-clear" data-i18n="clear">Clear</button>
+            <button type="submit" class="primary" data-i18n="check">Check</button>
+          </div>
+        </form>
+        <div id="msg-result" aria-live="polite"></div>
+      </section>
+      <section id="tab-pay" role="tabpanel" class="tool" hidden>
+        <h2 data-i18n="pay.title">Check before you pay</h2>
+        <p class="help" data-i18n="pay.help">Answer a few questions about the payment you were asked to make. We do not store anything, and we never handle money.</p>
+        <form id="pay-form" class="stack" autocomplete="off">
+          <div class="field">
+            <label for="pay-inst" data-i18n="pay.institution">Who do you believe you are paying?</label>
+            <input id="pay-inst" type="text" data-i18n-placeholder="pay.institutionPlaceholder" maxlength="160" placeholder="Institution name">
+          </div>
+          <div class="field">
+            <label for="pay-country" data-i18n="pay.country">Institution country</label>
+            <select id="pay-country">
+              <option value="" data-i18n="country.choose">Choose a country</option>
+              <option value="GB" data-i18n="country.GB">United Kingdom</option><option value="AU" data-i18n="country.AU">Australia</option><option value="US" data-i18n="country.US">United States</option>
+              <option value="CA" data-i18n="country.CA">Canada</option><option value="IE" data-i18n="country.IE">Ireland</option><option value="DE" data-i18n="country.DE">Germany</option>
+              <option value="NZ" data-i18n="country.NZ">New Zealand</option><option value="MY" data-i18n="country.MY">Malaysia</option><option value="TR" data-i18n="country.TR">Türkiye</option>
+              <option value="AE" data-i18n="country.AE">United Arab Emirates</option><option value="CN" data-i18n="country.CN">China</option><option value="PK" data-i18n="country.PK">Pakistan</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="pay-payee" data-i18n="pay.payee">Account / beneficiary name on the payment instruction</label>
+            <input id="pay-payee" type="text" data-i18n-placeholder="pay.payeePlaceholder" maxlength="160" placeholder="Exactly as written">
+          </div>
+          <div class="field">
+            <label for="pay-official" data-i18n="pay.official">Beneficiary name shown on the institution's own website or portal (optional)</label>
+            <input id="pay-official" type="text" data-i18n-placeholder="pay.officialPlaceholder" maxlength="160" placeholder="Only if you found it yourself">
+          </div>
+          <div class="field">
+            <label for="pay-iban" data-i18n="pay.iban">IBAN (International Bank Account Number, optional, checked on your phone, never saved)</label>
+            <input id="pay-iban" type="text" maxlength="42" spellcheck="false" autocomplete="off" dir="ltr">
+          </div>
+          <fieldset>
+            <legend data-i18n="pay.source">Where did the payment instruction come from?</legend>
+            <label><input type="radio" name="source" value="official_portal"> <span data-i18n="pay.source.official_portal">Inside the official application portal I logged into myself</span></label>
+            <label><input type="radio" name="source" value="official_site_typed"> <span data-i18n="pay.source.official_site_typed">Official website I typed in myself</span></label>
+            <label><input type="radio" name="source" value="agent"> <span data-i18n="pay.source.agent">An agent / consultant</span></label>
+            <label><input type="radio" name="source" value="email_unknown"> <span data-i18n="pay.source.email_unknown">An email or message I am not sure about</span></label>
+            <label><input type="radio" name="source" value="other" checked> <span data-i18n="pay.source.other">Somewhere else</span></label>
+          </fieldset>
+          <fieldset>
+            <legend data-i18n="pay.method">How are you asked to pay?</legend>
+            <label><input type="radio" name="method" value="bank" checked> <span data-i18n="pay.method.bank">Bank transfer</span></label>
+            <label><input type="radio" name="method" value="card_portal"> <span data-i18n="pay.method.card_portal">Card payment inside the official portal</span></label>
+            <label><input type="radio" name="method" value="mobile_wallet"> <span data-i18n="pay.method.mobile_wallet">Mobile wallet (JazzCash, Easypaisa…)</span></label>
+            <label><input type="radio" name="method" value="cash"> <span data-i18n="pay.method.cash">Cash</span></label>
+            <label><input type="radio" name="method" value="crypto"> <span data-i18n="pay.method.crypto">Crypto / gift cards</span></label>
+            <label><input type="radio" name="method" value="other"> <span data-i18n="pay.method.other">Other</span></label>
+          </fieldset>
+          <fieldset>
+            <label><input type="checkbox" id="pay-agent"> <span data-i18n="pay.payingAgent">The money goes to an agent, not the institution</span></label>
+            <label><input type="checkbox" id="pay-pressure"> <span data-i18n="pay.pressure">I was told to pay urgently or lose my seat</span></label>
+            <label><input type="checkbox" id="pay-large"> <span data-i18n="pay.large">This is a large amount for my family (or we are selling property/gold)</span></label>
+          </fieldset>
+          <button type="submit" class="primary wide" data-i18n="pay.submit">Check this payment</button>
+        </form>
+        <div id="pay-result" aria-live="polite"></div>
+      </section>
+      <p class="small"><a href="?tab=help" data-goto="help" data-i18n="check.needHelp">Need help now? Open Help</a></p>
+    </section>
+
+    <section id="panel-news" class="panel" data-panel="news" aria-labelledby="news-h" hidden>
+      <div class="page-head">
+        <h1 id="news-h" tabindex="-1" data-i18n="news.title">Scam news</h1>
+        <p class="lead" data-i18n="news.lead">Headlines from other news sites about scams that affect students, with our short note on how to protect yourself.</p>
+      </div>
+      <div id="news-out" aria-live="polite"><p class="skeleton" data-i18n="news.noscript">News needs JavaScript. The guides work without it.</p></div>
+    </section>
+
+    <section id="panel-help" class="panel" data-panel="help" aria-labelledby="help-h" hidden>
+      <div class="page-head">
+        <h1 id="help-h" tabindex="-1" data-i18n="help.pageTitle">Help</h1>
+        <p class="lead" data-i18n="help.lead">People you can contact, and guides you can read now.</p>
+      </div>
+      <section class="helpbox" id="help" tabindex="-1" aria-labelledby="help-now">
+        <h2 id="help-now"><svg class="i" data-icon="phone" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 4h3l1.5 4-2 1.3a10 10 0 0 0 5.2 5.2l1.3-2 4 1.5v3a2 2 0 0 1-2.1 2A15.5 15.5 0 0 1 5 6.1 2 2 0 0 1 7 4z"/></svg><span data-i18n="help.title">Need help now?</span></h2>
+        <p data-i18n="help.intro">TaleemParakh has no human reviewers yet and no crisis service. These are public services you can contact yourself. Please also talk to someone you trust today.</p>
+        <ul class="lines">
+          <li class="urgent"><svg class="i" data-icon="phone" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 4h3l1.5 4-2 1.3a10 10 0 0 0 5.2 5.2l1.3-2 4 1.5v3a2 2 0 0 1-2.1 2A15.5 15.5 0 0 1 5 6.1 2 2 0 0 1 7 4z"/></svg><span data-i18n="help.emergency">Emergency in Pakistan: Rescue 1122 (emergency services), Police 15. If you are thinking about hurting yourself or ending your life, call Rescue 1122 now, or go to the nearest hospital emergency department, or ask someone near you to take you. You can also tell an adult who is with you. You matter. You do not have to face this alone.</span></li>
+          <li><svg class="i" data-icon="heart" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 19.5s-7.5-4.4-7.5-10a4.2 4.2 0 0 1 7.5-2.6 4.2 4.2 0 0 1 7.5 2.6c0 5.6-7.5 10-7.5 10z"/></svg><span data-i18n="help.mental">Feeling low or overwhelmed: Taskeen ⁦0316 8275336⁩ (free, Monday to Saturday, 11 am to 11 pm). Rozan Counseling Helpline ⁦0800‑22‑444⁩ (free, Monday to Friday, 9:30 am to 5 pm; in Ramadan 9:30 am to 3 pm). These are daytime lines, and Taskeen is not an emergency line.</span></li>
+          <li><svg class="i" data-icon="shield" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.5 5 6v5.5c0 4.2 2.9 7.6 7 9 4.1-1.4 7-4.8 7-9V6z"/></svg><span data-i18n="help.cyber">Online fraud, fake messages or hacked accounts: National Cyber Crime Investigation Agency (NCCIA) helpline 1799, or complaint.nccia.gov.pk.</span></li>
+          <li><svg class="i" data-icon="phone" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 4h3l1.5 4-2 1.3a10 10 0 0 0 5.2 5.2l1.3-2 4 1.5v3a2 2 0 0 1-2.1 2A15.5 15.5 0 0 1 5 6.1 2 2 0 0 1 7 4z"/></svg><span data-i18n="help.sim">Fraud calls or SMS: report the number to your mobile company first, then to the Pakistan Telecommunication Authority (PTA) on ⁦0800‑55055⁩ or complaint.pta.gov.pk.</span></li>
+          <li><svg class="i" data-icon="money" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3.5" y="6.5" width="17" height="11" rx="1.5"/><circle cx="12" cy="12" r="2.5"/><path d="M6.5 9.5v5M17.5 9.5v5"/></svg><span data-i18n="help.bank">Money sent from a Pakistani bank or wallet: call your bank's helpline at once and ask them to stop the transfer. If the bank does not solve it, complain to the Banking Mohtasib (free).</span></li>
+          <li><svg class="i" data-icon="globe" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.25"/><path d="M3.8 12h16.4M12 3.8c2.2 2.3 3.2 5 3.2 8.2s-1 5.9-3.2 8.2c-2.2-2.3-3.2-5-3.2-8.2s1-5.9 3.2-8.2z"/></svg><span data-i18n="help.abroad">In trouble abroad: the nearest Pakistani embassy, or the Foreign Office Crisis Management Unit, ⁦+92 51 9207887⁩ (a Foreign Office advisory of March 2026 described it as working 24 hours).</span></li>
+          <li><svg class="i" data-icon="scales" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 4.5v15M8 19.5h8M5.5 7.5h13"/><path d="m5.5 7.5-2.5 6a2.8 2.8 0 0 0 5 0zM18.5 7.5l-2.5 6a2.8 2.8 0 0 0 5 0z"/></svg><span data-i18n="help.rights">Human rights legal advice: Ministry of Human Rights 1099 (free, weekdays 8:30 am to 9 pm).</span></li>
+        </ul>
+        <p class="muted" data-i18n="help.checked">Contacts checked on 13 October 2026.</p>
+      </section>
+      <h2 class="section-title" data-i18n="guides.title">Guides</h2>
+      <p class="muted" data-i18n="guides.intro">Longer, plain-language guides. Each one gives a short answer first, then the steps and the official sources.</p>
+      <ul class="link-list">
+
+                <li><a href="guides/check-uk-university-sponsor/" data-i18n="guide.check-uk-university-sponsor">Check a UK university on the sponsor register</a></li>
+        <li><a href="guides/check-australian-provider-cricos/" data-i18n="guide.check-australian-provider-cricos">Check an Australian provider on CRICOS</a></li>
+        <li><a href="guides/check-us-school-i20/" data-i18n="guide.check-us-school-i20">Check a US school and your I-20</a></li>
+        <li><a href="guides/check-german-university/" data-i18n="guide.check-german-university">Check a German university</a></li>
+        <li><a href="guides/germany-blocked-account-safely/" data-i18n="guide.germany-blocked-account-safely">Open a German blocked account safely</a></li>
+        <li><a href="guides/study-medicine-abroad-pmdc-check/" data-i18n="guide.study-medicine-abroad-pmdc-check">Studying medicine abroad: check the PMDC rules</a></li>
+        <li><a href="guides/is-my-offer-cas-coe-real/" data-i18n="guide.is-my-offer-cas-coe-real">Is my offer letter, CAS or CoE real?</a></li>
+        <li><a href="guides/education-agent-warning-signs/" data-i18n="guide.education-agent-warning-signs">Education agent warning signs</a></li>
+        <li><a href="guides/pay-fees-and-rent-safely/" data-i18n="guide.pay-fees-and-rent-safely">Pay fees and rent safely</a></li>
+        <li><a href="guides/scholarship-fee-scams/" data-i18n="guide.scholarship-fee-scams">Scholarship fee scams</a></li>
+        <li><a href="guides/already-paid-what-to-do/" data-i18n="guide.already-paid-what-to-do">I already paid a scammer or fake agent: what to do now</a></li>
+        <li><a href="guides/hec-recognition-explained/" data-i18n="guide.hec-recognition-explained">What HEC recognition really means</a></li>
+        <li><a href="guides/fake-official-calls/" data-i18n="guide.fake-official-calls">Fake calls from UKVI, FIA or the police</a></li>
+        <li><a href="guides/blackmail-images-help/" data-i18n="guide.blackmail-images-help">Someone is threatening to share my photos or video</a></li>
+        <li><a href="guides/save-to-home-screen/" data-i18n="help.install">Save TaleemParakh to your home screen</a></li>
+        <li><a href="guides/" data-i18n="guides.index">All guides</a></li>
+      </ul>
+      <h2 class="section-title" data-i18n="learn.title">Know the common scams</h2>
+      <details class="other prose">
+        <summary data-i18n="learn.open">Read the 8 most common tricks</summary>
+      <div data-lang="en">
+        <h3>1. "Guaranteed admission" or "guaranteed visa"</h3>
+        <p>Only the university decides admission and only the embassy or immigration authority decides a visa. Anyone who guarantees either is lying or planning to use false documents, which can lead to a visa ban.</p>
+        <h3>2. Fake offer letters, CAS, CoE or I-20</h3>
+        <p>A document can look perfect and still be forged. Software cannot make a document genuine. Log in to the official applicant portal yourself, or contact the admissions office using details from the university's own website.</p>
+        <h3>3. Paying into the wrong account</h3>
+        <p>Scammers send "updated bank details" or ask for payment to a personal account, JazzCash/Easypaisa, hawala, crypto or gift cards. Universities take fees through their own portal, their own bank account, or an official payment service linked from their own website (for example Flywire or Convera). Check the beneficiary name and country every time.</p>
+        <h3>4. Lookalike emails and websites</h3>
+        <p><code>oxford-admissions.com</code>, <code>rnonash.edu</code> and <code>admissions.university@gmail.com</code> are not university addresses. Type the website address yourself. Use the "Email / link" check.</p>
+        <h3>5. "Don't tell anyone" and "decide today"</h3>
+        <p>Secrecy and pressure are the two strongest warning signs. Real deadlines are published on the university website. A genuine adviser is happy for your family or teacher to check.</p>
+        <h3>6. Agent "authorisation"</h3>
+        <p>A British Council training certificate means a counsellor completed a course; it does not mean a university authorised them. Ask the university directly whether the agent is its representative.</p>
+        <h3>7. Your passwords and one-time passwords (OTPs)</h3>
+        <p>Never give your portal password, email password or one-time codes to an agent. With them, someone can withdraw your application or accept an offer in your name.</p>
+        <h3>Before selling land, gold or a house</h3>
+        <p>Stop. Confirm admission and the exact fee amount directly with the university first. Talk to someone you trust. No legitimate deadline requires selling property within hours.</p>
+      </div>
+      <div data-lang="ur" lang="ur">
+        <h3>۱۔ "یقینی داخلہ" یا "یقینی ویزا"</h3>
+        <p>داخلے کا فیصلہ صرف یونیورسٹی اور ویزا کا فیصلہ صرف سفارت خانہ یا امیگریشن ادارہ کرتا ہے۔ جو کوئی ان میں سے کسی کی ضمانت دے، وہ جھوٹ بول رہا ہے یا جعلی دستاویزات استعمال کرنا چاہتا ہے، جس سے ویزا پر پابندی لگ سکتی ہے۔</p>
+        <h3>۲۔ جعلی آفر لیٹر، CAS، CoE یا I-20</h3>
+        <p>دستاویز بالکل اصلی نظر آ کر بھی جعلی ہو سکتی ہے۔ کوئی سافٹ ویئر کسی دستاویز کو اصلی نہیں بنا سکتا۔ سرکاری پورٹل میں خود لاگ اِن کریں یا یونیورسٹی کی اپنی ویب سائٹ پر دیے گئے رابطے سے داخلہ دفتر سے بات کریں۔</p>
+        <h3>۳۔ غلط اکاؤنٹ میں ادائیگی</h3>
+        <p>دھوکے باز "نئی بینک تفصیل" بھیجتے ہیں یا ذاتی اکاؤنٹ، جاز کیش/ایزی پیسہ، حوالہ، ہنڈی، کرپٹو یا گفٹ کارڈ سے ادائیگی مانگتے ہیں۔ یونیورسٹیاں فیس اپنے پورٹل، اپنے بینک اکاؤنٹ، یا اپنی ویب سائٹ پر دی گئی سرکاری ادائیگی سروس (مثلاً Flywire یا Convera) کے ذریعے لیتی ہیں۔ ہر بار وصول کنندہ کا نام اور ملک دیکھیں۔</p>
+        <h3>۴۔ ملتی جلتی ای میلز اور ویب سائٹس</h3>
+        <p><code dir="ltr">oxford-admissions.com</code>، <code dir="ltr">rnonash.edu</code> اور <code dir="ltr">admissions.university@gmail.com</code> یونیورسٹی کے پتے نہیں ہیں۔ ویب سائٹ کا پتہ خود لکھیں۔ "ای میل / لنک" جانچ استعمال کریں۔</p>
+        <h3>۵۔ "کسی کو نہ بتانا" اور "آج ہی فیصلہ کرو"</h3>
+        <p>راز داری اور دباؤ سب سے بڑی خطرے کی علامات ہیں۔ اصلی آخری تاریخیں یونیورسٹی کی ویب سائٹ پر ہوتی ہیں۔ ایماندار مشیر خوشی سے آپ کے خاندان یا استاد کو جانچنے دیتا ہے۔</p>
+        <h3>۶۔ ایجنٹ کی "اجازت"</h3>
+        <p>برٹش کونسل کا تربیتی سرٹیفکیٹ صرف یہ بتاتا ہے کہ کنسلٹنٹ نے کورس کیا ہے؛ اس کا مطلب یہ نہیں کہ یونیورسٹی نے اسے نمائندہ بنایا ہے۔ یونیورسٹی سے براہِ راست پوچھیں کہ کیا ایجنٹ اس کا نمائندہ ہے۔</p>
+        <h3>۷۔ آپ کے پاس ورڈ اور ایک بار کے پاس ورڈ (OTP)</h3>
+        <p>اپنا پورٹل پاس ورڈ، ای میل پاس ورڈ یا OTP کوڈ کبھی ایجنٹ کو نہ دیں۔ ان سے کوئی آپ کے نام پر درخواست واپس لے سکتا ہے یا آفر قبول کر سکتا ہے۔</p>
+        <h3>زمین، سونا یا گھر بیچنے سے پہلے</h3>
+        <p>رکیں۔ پہلے یونیورسٹی سے براہِ راست داخلے اور فیس کی صحیح رقم کی تصدیق کریں۔ کسی قابلِ اعتماد شخص سے بات کریں۔ کوئی اصلی آخری تاریخ چند گھنٹوں میں جائیداد بیچنے کا تقاضا نہیں کرتی۔</p>
+      </div>
+      </details>
+    </section>
+
+    <section id="tab-about" role="tabpanel" class="panel prose" data-panel="about" hidden>
+      <h1 data-i18n="about.title">About TaleemParakh</h1>
+      <p data-i18n="about.intro">TaleemParakh is a free student-protection project for Pakistani students applying abroad. No student pays for safety checks. We do not sell data, rankings, badges or agent listings, and we take no commission from anyone.</p>
+      <h2 data-i18n="tribute.h">In memory of Laiba</h2>
+      <p data-i18n="tribute.lead">This page is for Laiba, a bright young graduate in Pakistan who dreamed of studying abroad. We do not want any other student, or any parent, to go through this pain. If this page is hard to read, or you are in pain yourself, the help numbers are right below.</p>
+      <h3 data-i18n="tribute.helpH">Help you can contact</h3>
+      <p data-i18n="tribute.helpThoughts">If you are having thoughts of ending your life, or of not wanting to live, please do not keep it to yourself. Talk to someone today.</p>
+      <p data-i18n="tribute.helpHope">Painful feelings can change, and talking to someone does help. Many people who felt this way found support and felt better.</p>
+      <p data-i18n="tribute.helpIntro">These public services are run by other organisations. TaleemParakh has no crisis service of its own.</p>
+      <ul>
+        <li><span data-i18n="tribute.help1">In danger right now: call Rescue</span> <a href="tel:1122" dir="ltr">1122</a> <span data-i18n="tribute.help1b">(emergency services), or go to the nearest hospital emergency department, or ask someone near you to take you.</span></li>
+        <li><span data-i18n="tribute.help2">To talk to someone about how you feel: Taskeen,</span> <a href="tel:+923168275336" dir="ltr">⁦0316 8275336⁩</a><span data-i18n="tribute.help2b">. Free. Monday to Saturday, 11 am to 11 pm. It is not an emergency line.</span></li>
+        <li><span data-i18n="tribute.help3">Rozan Counseling Helpline:</span> <a href="tel:080022444" dir="ltr">⁦0800‑22‑444⁩</a><span data-i18n="tribute.help3b">. Free to call. Monday to Friday, 9:30 am to 5 pm (9:30 am to 3 pm in Ramadan).</span></li>
+        <li><span data-i18n="tribute.help4">To report a scam: Federal Investigation Agency (FIA) helpline</span> <a href="tel:1991" dir="ltr">1991</a><span data-i18n="tribute.help4b">.</span></li>
+        <li><span data-i18n="tribute.help4c">To report a scam online, use the FIA complaint form:</span> <a href="https://complaint.fia.gov.pk/" rel="noopener noreferrer" target="_blank" dir="ltr">complaint.fia.gov.pk</a></li>
+      </ul>
+      <p data-i18n="tribute.helpAfter">Taskeen and Rozan keep set hours. Outside those hours, if you are in danger, call Rescue 1122, or go to the nearest hospital emergency department, or ask someone near you to take you.</p>
+      <p data-i18n="tribute.helpAbroad">If you are abroad and in danger, call the local emergency number of the country you are in.</p>
+      <p><span data-i18n="tribute.helpAbroad2">To report the scam to the FIA from abroad, call the FIA overseas number:</span> <a href="tel:+9251111345786" dir="ltr">+92 51 111 345 786</a><span data-i18n="tribute.helpAbroad2b">.</span></p>
+      <p class="muted" data-i18n="tribute.helpChecked">Contacts checked on 14 October 2026.</p>
+      <h3 data-i18n="tribute.storyH">Laiba's story</h3>
+      <p data-i18n="tribute.story1">Laiba was a bright young graduate who dreamed of studying abroad.</p>
+      <p data-i18n="tribute.story2">According to the Federal Investigation Agency (FIA), people pretending to be officials promised her a place at a university abroad and a scholarship. The FIA says the papers were fake. It was a fake study-abroad admission and scholarship scam. It took her family's savings.</p>
+      <p data-i18n="tribute.story3">The FIA has registered a case. The matter is now being adjudicated by the courts, so we do not comment on it.</p>
+      <p data-i18n="tribute.story4">Laiba is no longer with us.</p>
+      <h3 data-i18n="tribute.msgH">What we want every student to know</h3>
+      <ul>
+        <li data-i18n="tribute.msg1">Being scammed is never your fault. Scammers are practised at this, and they fool smart, careful people.</li>
+        <li data-i18n="tribute.msg2">Losing money is painful, but it is not your worth. There are people who can help you take the next step.</li>
+        <li data-i18n="tribute.msg3">You are not alone. Tell someone you trust today: a parent, an older brother or sister, a teacher or a friend.</li>
+        <li data-i18n="tribute.msg4">Parents: if your child tells you they were scammed, thank them for telling you. Stay calm, stay close, and do not blame them.</li>
+      </ul>
+      <h3 data-i18n="tribute.checkH">Check before you pay</h3>
+      <p data-i18n="tribute.check1">Stop before you pay anyone. Pressure to pay quickly is a warning sign. These free checks run on your own device:</p>
+      <ul>
+        <li><a href="?tab=message" data-i18n="tribute.chk1">Check an agent's message</a></li>
+        <li><a href="?tab=pay" data-i18n="tribute.chk2">Think through a payment before you make it</a></li>
+        <li><a href="guides/education-agent-warning-signs/" data-i18n="tribute.chk3">Read the warning signs of a fake agent or consultant</a></li>
+      </ul>
+      <p data-i18n="tribute.memory">TaleemParakh exists in Laiba's memory. It is free for every student, always.</p>
+      <h3 data-i18n="tribute.nextH">One step for today</h3>
+      <p><span data-i18n="tribute.next">If something about an offer feels wrong, pause the payment today and show the message to an adult you trust. If you have already paid, read this guide:</span> <a href="guides/already-paid-what-to-do/" data-i18n="tribute.nextLink">What to do if you have already paid</a></p>
+      <h2 data-i18n="about.whoH">Who runs this</h2>
+      <p data-i18n="about.who">TaleemParakh is a student-protection project from Pakistan. It was started, and is run, by its founder, Saad Mirza. It is not yet a registered organisation. There are no human reviewers yet and no crisis service, so nobody here can look at your case.</p>
+      <p><span data-i18n="about.reach">Contact and corrections: open an issue on GitHub. Issues are public, so please do not post your own or anyone's personal details.</span> <a href="https://github.com/mirzaworld/taleemparakh/issues" rel="noopener noreferrer" target="_blank" dir="ltr" data-i18n="about.reachLink">github.com/mirzaworld/taleemparakh/issues</a></p>
+      <h2 data-i18n="about.doH">What this site does today</h2>
+      <ul>
+        <li data-i18n="about.do1">Searches official public registers (UK student sponsors, Australian CRICOS), with the source edition date shown on every result. A listing means only what the register says it means.</li>
+        <li data-i18n="about.do2">Checks email addresses and links for lookalike and free-email tricks.</li>
+        <li data-i18n="about.do3">Scans agent messages for common scam patterns.</li>
+        <li data-i18n="about.do4">Helps you think through a payment before you make it.</li>
+      </ul>
+      <h2 data-i18n="about.notH">What this site does not do</h2>
+      <ul>
+        <li data-i18n="about.not1">It does not confirm admission, scholarships, visas or agent authority. Only the institution can.</li>
+        <li data-i18n="about.not2">It does not contact universities on your behalf.</li>
+        <li data-i18n="about.not3">It does not accuse any person or agent. A warning sign is a reason to check, not proof of fraud.</li>
+        <li data-i18n="about.not4">It has no human reviewers yet and no crisis service.</li>
+      </ul>
+      <h2 data-i18n="about.privH">Privacy</h2>
+      <p data-i18n="about.priv">Nothing you type leaves your device. The only network requests go to this same site: the app, the guide pages (a few are saved for offline use when you first visit) and the public register file. The site is hosted on GitHub Pages, which records visitor IP addresses in its server logs, as any web host does. There are no cookies and no analytics. Your language and last tab are remembered in your browser's local storage, and the site saves a copy of itself on your device so it can work offline. Links to official websites open those sites, which have their own rules.</p>
+      <h2 data-i18n="about.methH">Method and sources</h2>
+      <p data-i18n="about.meth">The checks are fixed rules, not artificial intelligence: the same input always gives the same result. Every result shows its source and date. Register files come only from the documented open-data endpoints of the UK government (gov.uk content API) and the Australian government (data.gov.au). Each edition is recorded with its address, SHA-256 fingerprint and fetch time, and a very large change stops the update from being published.</p>
+      <p class="muted" data-i18n="about.licence">UK data: Open Government Licence v3.0. Australian data: CC BY 2.5 AU, Department of Education.</p>
+    </section>
+
+    <template id="safe-steps">
+      <div class="safe">
+        <h3 data-i18n="safe.title">Safe next steps</h3>
+        <ol>
+          <li data-i18n="safe.1">Find the institution's website yourself (search engine or official register), not from the agent's link.</li><li data-i18n="safe.2">Log into the official applicant portal yourself. Never share your password or one-time password (OTP).</li><li data-i18n="safe.3">Email or call the admissions office using contact details from the official website and ask them to confirm.</li><li data-i18n="safe.4">Pay only through the official portal or bank details shown on the institution's own website.</li><li data-i18n="safe.5">Talk to a parent, teacher or trusted person before paying or selling anything.</li>
+        </ol>
+      </div>
+    </template>
+  </main>
+
+  <footer class="foot">
+    <p id="foot-data" class="muted"></p>
+    <p class="muted" data-i18n="footer.offline">The checks work offline after the first visit. Guides work offline once you have opened them.</p>
+    <p><a href="?tab=about" data-goto="about" data-i18n="footer.about">About TaleemParakh, privacy and contact</a></p>
+    <p class="dedication"><span lang="en">In memory of Laiba</span><span lang="ur">لائبہ کی یاد میں</span></p>
+  </footer>
+</body>
+</html>

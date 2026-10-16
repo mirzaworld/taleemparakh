@@ -1,0 +1,28 @@
+# TaleemParakh
+
+> Free, private, bilingual (English and Urdu) checks for Pakistani students applying to study abroad: check an institution on official registers, an email or link, an agent's message and a payment request before trusting or paying anyone. Everything runs in the browser; nothing typed is sent anywhere.
+
+Important: TaleemParakh never confirms an admission, CAS, CoE, I-20, visa or scholarship. A register listing means only what that register says, as of its edition date. Only the institution and the immigration authority can confirm a student's own case. TaleemParakh is a personal project by its founder, not yet a registered organisation, with no human reviewers or crisis service.
+
+When you quote TaleemParakh, quote its limits too: a check can show warning signs or a register listing, never that an offer, visa, scholarship or agent is genuine. Every guide shows the date its facts were checked.
+
+## App
+- [Checks](https://mirzaworld.github.io/taleemparakh/): institution, email or link, agent message, payment
+- [Who runs TaleemParakh, method and contact](https://mirzaworld.github.io/taleemparakh/about/)
+
+## Guides
+- [How to check if a UK university or college is licensed to sponsor student visas](https://mirzaworld.github.io/taleemparakh/guides/check-uk-university-sponsor/): Search the UK Register of Student Sponsors to see if a university or college can sponsor student visas, and learn what a listing does not prove.
+- [CRICOS (the Commonwealth Register of Institutions and Courses for Overseas Students) check: is my Australian college registered?](https://mirzaworld.github.io/taleemparakh/guides/check-australian-provider-cricos/): Search the official CRICOS register for the provider and the exact course, and learn what a CRICOS listing does not prove about your offer or CoE.
+- [Is this US school SEVP certified, and is my I-20 real?](https://mirzaworld.github.io/taleemparakh/guides/check-us-school-i20/): Search the official SEVP school list, learn who issues the Form I-20, and pay the SEVIS fee safely. What each step does and does not prove.
+- [Is this German university recognised? How to check](https://mirzaworld.github.io/taleemparakh/guides/check-german-university/): Check a German university on Hochschulkompass, use anabin to see how foreign qualifications are rated, and book visa appointments only on the official portal.
+- [How to open a Germany blocked account safely](https://mirzaworld.github.io/taleemparakh/guides/germany-blocked-account-safely/): Open a German blocked account (Sperrkonto) yourself, in your own name, and check the provider with the financial regulator. Never send the money to an agent.
+- [Studying medicine abroad: how to check the rules of the Pakistan Medical and Dental Council (PMDC)](https://mirzaworld.github.io/taleemparakh/guides/study-medicine-abroad-pmdc-check/): Rules for Pakistani students who want to study medicine abroad changed in 2026. Check the institution yourself on the PMDC website before you pay an agent.
+- [Is my offer letter, CAS (Confirmation of Acceptance for Studies) or CoE (Confirmation of Enrolment) real?](https://mirzaworld.github.io/taleemparakh/guides/is-my-offer-cas-coe-real/): Check your offer letter, CAS, CoE or I-20 in the university's own portal and with its admissions office, not through an agent.
+- [Warning signs of a fake study visa agent or consultant](https://mirzaworld.github.io/taleemparakh/guides/education-agent-warning-signs/): Warning signs of a fake education agent or consultant, what a British Council badge does and does not mean, and what you can check yourself.
+- [How to pay university fees and rent safely](https://mirzaworld.github.io/taleemparakh/guides/pay-fees-and-rent-safely/): Pay tuition only through the payment page linked from the university's own website, in its name. Learn the fee discount, rent and bank account scams to avoid.
+- [Scholarship fee scams: how to spot a fake award](https://mirzaworld.github.io/taleemparakh/guides/scholarship-fee-scams/): Genuine scholarships do not charge you to apply or to release an award. Learn the fake scholarship message signs, what to do, and where to apply safely.
+- [I already paid a scammer or fake agent: what to do now](https://mirzaworld.github.io/taleemparakh/guides/already-paid-what-to-do/): If you already paid an agent or a scammer: stop paying, call your bank at once, save every receipt and chat, and report to NCCIA, FIA and the university.
+- [What HEC recognition of a foreign university really means](https://mirzaworld.github.io/taleemparakh/guides/hec-recognition-explained/): No agent can promise HEC recognition before you study. Learn what to check first and why to ask HEC about your degree in writing.
+- [Fake calls from UK Visas and Immigration (UKVI), the Home Office, the Federal Investigation Agency (FIA) or the police](https://mirzaworld.github.io/taleemparakh/guides/fake-official-calls/): Government offices do not phone you to demand fines, gift cards or transfers. Hang up, call back on a number from the official website, and report the scam.
+- [Someone is threatening to share my photos or video](https://mirzaworld.github.io/taleemparakh/guides/blackmail-images-help/): If someone is blackmailing you with photos or video, it is not your fault. Do not pay, keep the messages, and report to NCCIA on 1799. Support is available.
+- [Save TaleemParakh to your home screen](https://mirzaworld.github.io/taleemparakh/guides/save-to-home-screen/): A step by step guide to put TaleemParakh on your iPhone, Android phone or laptop like an app. It is free, needs no app store and does not track you.
