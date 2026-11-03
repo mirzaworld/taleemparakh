@@ -6,7 +6,7 @@
 // Update flow: a new worker waits instead of taking over mid-use. It tells open pages (message TP_UPDATE_READY),
 // and the page sends TP_SKIP_WAITING when the student taps "Update now", then reloads on controllerchange.
 // HTML is only ever returned for a navigation, never in place of a stylesheet or script (finding B-15).
-const VERSION = 'tp-f03daee4c7fa';
+const VERSION = 'tp-f21f31bb3b71';
 const SHELL = [
   './', 'index.html', 'offline.html', 'styles.css', 'manifest.webmanifest', 'icons/icon.svg', 'icons/mark.svg', 'fonts/lora-latin.woff2', 'fonts/nastaliq-urdu.woff2', 'icons/icon-192.png', 'icons/favicon-32.png',
   'js/app.js', 'js/i18n.js', 'js/core/normalize.js', 'js/core/registry.js',
